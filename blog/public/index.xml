@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>interesting things</title>
-    <link>https://hairyhenderson.github.io/</link>
+    <link>https://hairyhenderson.github.io/blog/public/</link>
     <description>Recent content on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 07 Jun 2015 20:51:59 -0400</lastBuildDate>
-    <atom:link href="https://hairyhenderson.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hairyhenderson.github.io/blog/public/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>about</title>
-      <link>https://hairyhenderson.github.io/about/</link>
+      <link>https://hairyhenderson.github.io/blog/public/about/</link>
       <pubDate>Sun, 07 Jun 2015 20:51:59 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/about/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/about/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s alive! 🎉&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>License</title>
-      <link>https://hairyhenderson.github.io/license/</link>
+      <link>https://hairyhenderson.github.io/blog/public/license/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://hairyhenderson.github.io/license/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/license/</guid>
       <description>
 
 &lt;h3 id=&#34;content-license:53e892b8b41cc4caece1cfd5ef21d6e7&#34;&gt;Content license&lt;/h3&gt;
