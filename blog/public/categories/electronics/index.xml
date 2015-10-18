@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Electronics on interesting things</title>
+    <link>http://localhost:1313/categories/electronics/</link>
+    <description>Recent content in Electronics on interesting things</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Jun 2015 21:05:51 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/electronics/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>sensor madness</title>
+      <link>http://localhost:1313/post/sensor_madness/</link>
+      <pubDate>Sun, 07 Jun 2015 21:05:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/sensor_madness/</guid>
+      <description>&lt;p&gt;So, I decided I wanted to play with some of these ESP8266 boards
+I&amp;rsquo;d been hearing so much about.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;bought three Adafruit ESP8266 Huzzah! boards and three DHT22 modules&lt;/li&gt;
+&lt;li&gt;had a terrible time configuring the Arduino IDE for the board - everything&amp;rsquo;s probably just too new&lt;/li&gt;
+&lt;li&gt;finally figured out the key - gotta set some value to &lt;code&gt;26&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;// Need to change cycle count threshold since the ESP8266 works at 80MHz
+// 26 seems to put it into a state that agrees with my house&#39;s thermostat...
+DHT dht(DHTPIN, DHTTYPE, 26);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now I&amp;rsquo;ve got a little sketch that:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;reads WiFi SSID/pass from EEPROM&lt;/li&gt;
+&lt;li&gt;connects to WiFi, and registers &lt;code&gt;esp8266.local&lt;/code&gt; with mDNS&lt;/li&gt;
+&lt;li&gt;responds to HTTP &lt;code&gt;GET&lt;/code&gt;s by reading from the DHT22 and sending back some JSON:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ curl esp8266.local
+{&amp;quot;temperature&amp;quot;:28.00,&amp;quot;humidity&amp;quot;:36.00,&amp;quot;heatIndex&amp;quot;:27.41}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Still to do:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;come up with a name for the thing that doesn&amp;rsquo;t sound weird, or get used to the weird name I came up with (&lt;em&gt;roomfly&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;figure out batteries, and figure out power saving measures (deep sleep?)&lt;/li&gt;
+&lt;li&gt;get rid of the HTTP API and get it to talk to an MQTT server instead (&lt;a href=&#34;https://github.com/knolleary/pubsubclient&#34;&gt;PubSubClient&lt;/a&gt; seems good)&lt;/li&gt;
+&lt;li&gt;figure out which MQTT server to get it to talk to ;)&lt;/li&gt;
+&lt;li&gt;build an enclosure for it (actually, build 3 enclosures)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;woot.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

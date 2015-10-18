@@ -1,0 +1,26 @@
+baseurl = "https://hairyhenderson.github.io/"
+languageCode = "en-us"
+title = "interesting things"
+theme = "hyde-x"
+builddrafts = false
+disqusShortname = "hairyhenderson"
+
+[author]
+    name = "Dave Henderson"
+
+[taxonomies]
+    category = "categories"
+
+[params]
+    gravatarHash = "3a457dd69d8817d6a61c7dc07b348bfa"
+    tagline = "interesting things"
+
+    defaultDescription = "Dave's random projects, notes, musings..."
+    # theme = "theme-base-0f"
+    highlight = "tomorrow-night-eighties"
+
+    github = "https://github.com/hairyhenderson"
+    bitbucket = "https://bitbucket.org/hairyhenderson"
+    facebook = "https://www.facebook.com/dave.a.henderson"
+    linkedin = "https://ca.linkedin.com/in/hairyhenderson"
+    twitter = "https://twitter.com/hairyhenderson"
