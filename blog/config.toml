@@ -5,6 +5,8 @@ theme = "hyde-x"
 builddrafts = false
 disqusShortname = "hairyhenderson"
 
+canonifyurls = true
+
 [author]
     name = "Dave Henderson"
 
