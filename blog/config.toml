@@ -1,4 +1,4 @@
-baseurl = "https://hairyhenderson.github.io/"
+baseurl = "https://hairyhenderson.github.io/blog/public/"
 languageCode = "en-us"
 title = "interesting things"
 theme = "hyde-x"
