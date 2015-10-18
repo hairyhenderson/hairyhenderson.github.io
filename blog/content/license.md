@@ -4,9 +4,14 @@ title = "License"
 description = "License for the contents of this website and blog"
 keywords = ["license", "blog", "code"]
 +++
+
 ### Content license
 
-All non-code blog content is licensed under [Creative Commons Attribution 4.0](http://creativecommons.org/licenses/by/4.0/).
+All _non-code_ blog content is licensed as follows:
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+This work by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Dave Henderson</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
 ### Code license
 
