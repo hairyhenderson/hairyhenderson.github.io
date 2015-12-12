@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>about &middot; Dave Henderson</title>
+  <title>Using Hugo &middot; Dave Henderson</title>
 
   
   <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/poole.css">
@@ -71,13 +71,96 @@
 
 <div class="content container">
   <div class="post">
-    <h1>about</h1>
-    <p>It&rsquo;s alive! 🎉</p>
+    <h1>Using Hugo</h1>
+    <span class="post-date">Dec 12, 2015 &middot; 1 minute read &middot; <a href="https://hairyhenderson.github.io/blog/public/post/using_hugo/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="https://hairyhenderson.github.io/blog/public/categories/notes">notes</a>
+    </span>
+    
+
+<p>Hugo&rsquo;s pretty simple to use, but I use it so sporadically I figured I should jot down how I use it&hellip;</p>
+
+<p><em><strong>Note:</strong> All the following commands assume I&rsquo;m in the <code>/blog</code> subdirectory of the
+<a href="https://github.com/hairyhenderson/hairyhenderson.github.io">repo</a>.</em></p>
+
+<h2 id="installation:5bdf9ff4f70a51c79abdc3fa948e7c66">Installation</h2>
+
+<p>I installed it with Homebrew:</p>
+
+<pre><code class="language-console">$ brew install hugo
+</code></pre>
+
+<p>so to upgrade it I just <code>brew update &amp;&amp; brew upgrade</code>.</p>
+
+<h2 id="previewing:5bdf9ff4f70a51c79abdc3fa948e7c66">Previewing</h2>
+
+<p>To get <code>hugo</code> to render on-the-fly:</p>
+
+<pre><code class="language-console">$ hugo server --watch --buildDrafts
+</code></pre>
+
+<h2 id="writing-new-articles:5bdf9ff4f70a51c79abdc3fa948e7c66">Writing new articles</h2>
+
+<p>To start a new post:</p>
+
+<pre><code class="language-console">$ hugo new post/title_of_post.md
+</code></pre>
+
+<p>Or if it&rsquo;s a static page (about/etc)</p>
+
+<pre><code class="language-console">$ hugo new title_of_page.md
+</code></pre>
+
+<p>Edit the page:</p>
+
+<pre><code class="language-console">$ atom content/&lt;path to .md file&gt;
+</code></pre>
+
+<p>Update the <code>categories</code> and <code>title</code> fields, and set <code>draft = true</code> in the front matter if necessary.</p>
+
+<h2 id="publishing:5bdf9ff4f70a51c79abdc3fa948e7c66">Publishing</h2>
+
+<p>Regenerate the site</p>
+
+<pre><code class="language-console">$ hugo
+</code></pre>
+
+<p>Then <code>git add</code>/<code>git commit</code>/<code>git push</code> to taste.</p>
+
+<p><em>fin</em></p>
 
   </div>
+  <div id="disqus_thread"></div>
 </div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hairyhenderson";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hairyhenderson";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 <script src="https://hairyhenderson.github.io/blog/public/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 </body>
 </html>
+
