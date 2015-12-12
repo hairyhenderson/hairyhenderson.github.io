@@ -16,10 +16,9 @@ This work by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attrib
 ### Code license
 
 All source code files and snippets found on this blog, unless otherwise explicitly
-noted, are licensed under the terms below.
+noted, are licensed under the terms below:
 
-
-_The MIT License (MIT)
+<em>The MIT License (MIT)
 
 Copyright (c) 2015 Dave Henderson
 
@@ -39,4 +38,4 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE._
+SOFTWARE.</em>
