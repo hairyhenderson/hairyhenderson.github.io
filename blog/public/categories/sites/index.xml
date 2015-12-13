@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Electronics on interesting things</title>
-    <link>https://hairyhenderson.github.io/blog/public/categories/electronics/</link>
-    <description>Recent content in Electronics on interesting things</description>
+    <title>Sites on interesting things</title>
+    <link>https://hairyhenderson.github.io/blog/public/categories/sites/</link>
+    <description>Recent content in Sites on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 13 Dec 2015 13:42:50 -0500</lastBuildDate>
-    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/electronics/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/sites/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Wii Remote Hacks</title>

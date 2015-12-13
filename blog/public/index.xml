@@ -6,8 +6,32 @@
     <description>Recent content on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Dec 2015 13:21:28 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 13 Dec 2015 13:42:50 -0500</lastBuildDate>
     <atom:link href="https://hairyhenderson.github.io/blog/public/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Wii Remote Hacks</title>
+      <link>https://hairyhenderson.github.io/blog/public/post/wiihacks/</link>
+      <pubDate>Sun, 13 Dec 2015 13:42:50 -0500</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/post/wiihacks/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;d be cool to use the Wiimote and/or nunchuck as an input device to control
+I dunno, a drone or something?&lt;/p&gt;
+
+&lt;p&gt;Haven&amp;rsquo;t gotten very far, but here&amp;rsquo;s some links for posterity:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://wiibrew.org&#34;&gt;wiibrew&lt;/a&gt; - lots of in-depth info, like docs for the various
+protocols and data formats, esp. around the &amp;lsquo;mote and nunchuck&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://hackaday.com/category/nintendo-wii-hacks/&#34;&gt;hackaday category&lt;/a&gt; - relevant
+articles&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://gobot.io/documentation/drivers/wiimote-nunchuk/&#34;&gt;gobot lib&lt;/a&gt; - i2c for
+the nunchuck&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.adafruit.com/product/345&#34;&gt;nunchucky&lt;/a&gt; from Adafruit - breakout for
+nunchuck and other devices (like the classic controller) to use them directly&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>asciinema</title>
