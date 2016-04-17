@@ -20,7 +20,7 @@ noted, are licensed under the terms below:
 
 <em>The MIT License (MIT)
 
-Copyright (c) 2015 Dave Henderson
+Copyright (c) 2015-2016 Dave Henderson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
