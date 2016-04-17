@@ -33,4 +33,4 @@ So there's a few things I'll need to figure out:
   - Can I keep my Raspberry Pi in the basement but have the balance board on the
   top floor?
 
-I'm going to get started (vaguely), and will report back in part 2! :wave:
+I'm going to get started (vaguely), and will report back in part 2! 👋
