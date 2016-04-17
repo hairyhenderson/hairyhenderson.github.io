@@ -6,8 +6,57 @@
     <description>Recent content on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Dec 2015 13:42:50 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 16 Apr 2016 10:33:41 -0400</lastBuildDate>
     <atom:link href="https://hairyhenderson.github.io/blog/public/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Wii Balance Board Fitbit logger - Part 1</title>
+      <link>https://hairyhenderson.github.io/blog/public/post/wii-fitbit-logger-pt1/</link>
+      <pubDate>Sat, 16 Apr 2016 10:33:41 -0400</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/post/wii-fitbit-logger-pt1/</guid>
+      <description>
+
+&lt;p&gt;There was a &lt;a href=&#34;https://blog.adafruit.com/2016/04/15/weight-tracking-with-a-humorous-text-messaging-scale-pi3-piday-raspberrypi-raspberry_pi/&#34;&gt;pretty interesting post&lt;/a&gt;
+that I recently came across - basically a link to &lt;a href=&#34;https://github.com/InitialState/smart-scale/wiki&#34;&gt;&lt;code&gt;InitialState/smart-scale&lt;/code&gt; on GitHub &lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The basic idea is you take a Wii Balance Board (the one that came with Wii Fit),
+and hook it up via Bluetooth to a Raspberry Pi 3 (or any other computer with
+Bluetooth).&lt;/p&gt;
+
+&lt;p&gt;When I was reading the post, I tapped my wrist and realized my Fitbit was out of
+battery power and I&amp;rsquo;d have to go charge it soon. This got me thinking&amp;hellip;
+What if I could use my Wii Balance Board to send weight updates to Fitbit
+through their API?&lt;/p&gt;
+
+&lt;h3 id=&#34;some-gaps:ff6a7f420f3f0c7d1e6f38eeab20d380&#34;&gt;Some gaps&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;So there&amp;rsquo;s a few things I&amp;rsquo;ll need to figure out:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;What language do I want to write all this in?
+
+&lt;ul&gt;
+&lt;li&gt;The example&amp;rsquo;s in Python, but I&amp;rsquo;d prefer to use Go, because&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;How to authenticate with the Fitbit API?
+
+&lt;ul&gt;
+&lt;li&gt;They use OAuth2 (OAuth1 was deprecated and is no longer supported), and it
+seems I need to use the &lt;a href=&#34;https://dev.fitbit.com/docs/oauth2/#implicit-grant-flow&#34;&gt;&amp;ldquo;Implicit Grant&amp;rdquo; flow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;I have zero knowledge of Bluetooth, so I&amp;rsquo;m sure there&amp;rsquo;ll be some stumbling
+blocks along the way&amp;hellip;
+
+&lt;ul&gt;
+&lt;li&gt;Can I keep my Raspberry Pi in the basement but have the balance board on the
+top floor?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I&amp;rsquo;m going to get started (vaguely), and will report back in part 2! :wave:&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Wii Remote Hacks</title>
