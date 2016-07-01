@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Getting YubiKey working with Docker Content Trust on OS X &middot; Dave Henderson</title>
+
+  
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/poole.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/poole-overrides.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde-overrides.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde-x.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/highlight/tomorrow-night-eighties.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://hairyhenderson.github.io/blog/public/touch-icon-144-precomposed.png">
+  <link href="https://hairyhenderson.github.io/blog/public/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Dave&#39;s random projects, notes, musings...">
+  <meta name="keywords" content="yubikey,docker">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <img src="https://www.gravatar.com/avatar/3a457dd69d8817d6a61c7dc07b348bfa?s=200" alt="gravatar">
+      <h1>Dave Henderson</h1>
+      <p class="lead">interesting things</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/blog/public/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/blog/public/about/">about</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/hairyhenderson"><i class="fa fa-github-square fa-3x"></i></a>
+      <a href="https://bitbucket.org/hairyhenderson"><i class="fa fa-bitbucket-square fa-3x"></i></a>
+      <a href="https://ca.linkedin.com/in/hairyhenderson"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      <a href="https://www.facebook.com/dave.a.henderson"><i class="fa fa-facebook-square fa-3x"></i></a>
+      <a href="https://twitter.com/hairyhenderson"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 <a href="https://hairyhenderson.github.io/blog/public/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Getting YubiKey working with Docker Content Trust on OS X</h1>
+    <span class="post-date">Jun 30, 2016 &middot; 3 minute read &middot; <a href="https://hairyhenderson.github.io/blog/public/post/yubikey-dct/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="https://hairyhenderson.github.io/blog/public/categories/notes">notes</a><a class="label" href="https://hairyhenderson.github.io/blog/public/categories/docker">docker</a>
+    </span>
+    
+
+<h1 id="getting-yubikey-working-with-docker-content-trust-on-os-x:8de52b836e4520addf1801deb6384fc7">Getting YubiKey working with Docker Content Trust on OS X</h1>
+
+<p>This wasn&rsquo;t as straightforward as I would&rsquo;ve liked, so I&rsquo;m documenting this here.</p>
+
+<p>First, some super-useful sources:</p>
+
+<ul>
+<li><a href="https://blog.docker.com/2015/11/docker-content-trust-yubikey/">Diogo Mónica&rsquo;s blog posting from DockerCon EU 2015</a> (<em>DOCKER CONTENT TRUST GETS HARDWARE SIGNING</em>)</li>
+<li><a href="https://github.com/docker/notary/issues/779">docker/notary#779</a> (<em>Improve docs for typical CI usage with docker+notary</em>)</li>
+<li>The <a href="https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip">YubiKey PIV CLI tool v1.4.0 zip</a></li>
+<li><a href="https://github.com/docker/toolbox/issues/461">docker/toolbox#461</a> (from here I gleaned that
+<code>/usr/local/docker/lib</code> is understood by <code>notary</code>)</li>
+</ul>
+
+<p>I only figured this out because the folks above did most of the work!</p>
+
+<h2 id="preparation:8de52b836e4520addf1801deb6384fc7">Preparation&hellip;</h2>
+
+<h3 id="install-notary:8de52b836e4520addf1801deb6384fc7">Install notary</h3>
+
+<p>Just a matter of grabbing the latest from <a href="https://github.com/docker/notary/releases">https://github.com/docker/notary/releases</a>
+and putting the <code>notary</code> binary in the path somewhere (like <code>~/bin</code> in my case).</p>
+
+<h3 id="install-the-yubikey-piv-shared-libraries:8de52b836e4520addf1801deb6384fc7">Install the YubiKey PIV shared libraries</h3>
+
+<ul>
+<li><p>First download the <a href="https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip">PIV CLI tool zip</a> and extract it somewhere</p>
+
+<pre><code class="language-console">$ curl -OL https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip
+...
+$ unzip yubico-piv-tool-1.4.0-mac.zip
+</code></pre></li>
+
+<li><p>We only need the contents of <code>lib</code>, and it turns out it can simply be copied
+into <code>/usr/local/docker/lib</code>:</p>
+
+<pre><code class="language-console">$ mkdir -p /usr/local/docker/lib
+$ cp -av lib/ /usr/local/docker/lib
+</code></pre></li>
+
+<li><p>That&rsquo;s it - now make sure this worked:</p>
+
+<pre><code class="language-console">$ DOCKER_CONTENT_TRUST=1 docker -D pull alpine
+Using default tag: latest
+DEBU[0000] reading certificate directory: /Users/myuser/.docker/tls/notary.docker.io
+DEBU[0000] Initialized PKCS11 library /usr/local/docker/lib/libykcs11.dylib and started HSM session
+...
+</code></pre></li>
+
+<li><p>The key is that <code>started HSM session</code> bit</p></li>
+</ul>
+
+<h2 id="configuration:8de52b836e4520addf1801deb6384fc7">Configuration&hellip;</h2>
+
+<p>Ok now we&rsquo;re ready to create a key:</p>
+
+<ul>
+<li><code>notary key generate</code>
+
+<ul>
+<li>give it a complex passphrase stored in a password manager (I like
+<a href="https://1password.com">1Password</a>)</li>
+</ul></li>
+
+<li><p>Verify that it&rsquo;s there:</p>
+
+<pre><code class="language-console">$ notary key list
+ROLE   GUN    KEY ID        LOCATION
+------------------------------------------
+root         deadbeef....   file (/Users/myuser/.docker/trust/private)  
+root         deadbeef....   yubikey    
+</code></pre>
+
+<ul>
+<li>that second entry says it&rsquo;s in the yubikey.</li>
+</ul></li>
+
+<li><p>Maybe a good idea to back up the root key now (to a <em>secure offline location!</em>), with <code>notary key backup</code></p>
+
+<pre><code class="language-console">$ notary key backup /Volumes/SomeUSBStick/archivename.zip
+...
+</code></pre>
+
+<ul>
+<li>this will re-encrypt with a new passphrase into a zip file. Obviously we gotta keep that passphrase handy too!</li>
+</ul></li>
+
+<li><p>Last, we can delete the on-disk key. It&rsquo;s unnecessary since we&rsquo;ll use the YubiKey&rsquo;s copy.</p>
+
+<pre><code class="language-console">$ rm ~/.docker/trust/private/root_keys/deadbeef....key
+</code></pre></li>
+</ul>
+
+<h2 id="signing-on-push:8de52b836e4520addf1801deb6384fc7">Signing on push</h2>
+
+<p>And now for the magic:</p>
+
+<pre><code class="language-console">$ export DOCKER_CONTENT_TRUST=1
+$ docker build -t hairyhenderson/dct-test:latest
+...
+$ docker push hairyhenderson/dct-test:latest
+The push refers to a repository [docker.io/hairyhenderson/dct-test]
+e520aba5adf5: Layer already exists
+917d421641b4: Layer already exists
+e9d17ff7ca16: Layer already exists
+63bcbfab7dc5: Layer already exists
+af21bd4b5bb1: Layer already exists
+4b0b3b9ff599: Layer already exists
+d1e800db26c7: Layer already exists
+42755cf4ee95: Layer already exists
+latest: digest: sha256:deadbeef25599d9a37bd452ba6918ac198693fe4b9f9822d0a4bf54735469f04 size: 1974
+Signing and pushing trust metadata
+Please touch the attached Yubikey to perform signing.
+Enter passphrase for new repository key with ID 7ff917d (docker.io/hairyhenderson/dct-test):
+Repeat passphrase for new repository key with ID 7ff917d (docker.io/hairyhenderson/dct-test):
+Please touch the attached Yubikey to perform signing.
+Finished initializing &quot;docker.io/hairyhenderson/dct-test&quot;
+Successfully signed &quot;docker.io/hairyhenderson/dct-test&quot;:latest
+</code></pre>
+
+<p>This is as far as I&rsquo;ve gotten&hellip; Maybe more to come later!</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hairyhenderson";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hairyhenderson";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="https://hairyhenderson.github.io/blog/public/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
+
