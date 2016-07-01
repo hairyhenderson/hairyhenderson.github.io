@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Notes on interesting things</title>
-    <link>https://hairyhenderson.github.io/blog/public/categories/notes/</link>
-    <description>Recent content in Notes on interesting things</description>
+    <title>Docker on interesting things</title>
+    <link>https://hairyhenderson.github.io/blog/public/categories/docker/</link>
+    <description>Recent content in Docker on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 22:19:39 -0400</lastBuildDate>
-    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Getting YubiKey working with Docker Content Trust on OS X</title>
@@ -138,67 +138,6 @@ Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is as far as I&amp;rsquo;ve gotten&amp;hellip; Maybe more to come later!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Using Hugo</title>
-      <link>https://hairyhenderson.github.io/blog/public/post/using_hugo/</link>
-      <pubDate>Sat, 12 Dec 2015 12:38:40 -0500</pubDate>
-      
-      <guid>https://hairyhenderson.github.io/blog/public/post/using_hugo/</guid>
-      <description>
-
-&lt;p&gt;Hugo&amp;rsquo;s pretty simple to use, but I use it so sporadically I figured I should jot down how I use it&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; All the following commands assume I&amp;rsquo;m in the &lt;code&gt;/blog&lt;/code&gt; subdirectory of the
-&lt;a href=&#34;https://github.com/hairyhenderson/hairyhenderson.github.io&#34;&gt;repo&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;installation:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Installation&lt;/h2&gt;
-
-&lt;p&gt;I installed it with Homebrew:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ brew install hugo
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;so to upgrade it I just &lt;code&gt;brew update &amp;amp;&amp;amp; brew upgrade&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;previewing:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Previewing&lt;/h2&gt;
-
-&lt;p&gt;To get &lt;code&gt;hugo&lt;/code&gt; to render on-the-fly:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo server --watch --buildDrafts
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;writing-new-articles:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Writing new articles&lt;/h2&gt;
-
-&lt;p&gt;To start a new post:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo new post/title_of_post.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or if it&amp;rsquo;s a static page (about/etc)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo new title_of_page.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Edit the page:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ atom content/&amp;lt;path to .md file&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Update the &lt;code&gt;categories&lt;/code&gt; and &lt;code&gt;title&lt;/code&gt; fields, and set &lt;code&gt;draft = true&lt;/code&gt; in the front matter if necessary.&lt;/p&gt;
-
-&lt;h2 id=&#34;publishing:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Publishing&lt;/h2&gt;
-
-&lt;p&gt;Regenerate the site&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then &lt;code&gt;git add&lt;/code&gt;/&lt;code&gt;git commit&lt;/code&gt;/&lt;code&gt;git push&lt;/code&gt; to taste.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;fin&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
