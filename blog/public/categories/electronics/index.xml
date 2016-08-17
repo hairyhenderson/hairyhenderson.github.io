@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Electronics on interesting things</title>
-    <link>https://hairyhenderson.github.io/categories/electronics/</link>
+    <link>https://hairyhenderson.github.io/blog/public/categories/electronics/</link>
     <description>Recent content in Electronics on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 16 Apr 2016 10:33:41 -0400</lastBuildDate>
-    <atom:link href="https://hairyhenderson.github.io/categories/electronics/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/electronics/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Wii Balance Board Fitbit logger - Part 1</title>
-      <link>https://hairyhenderson.github.io/post/wii-fitbit-logger-pt1/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/wii-fitbit-logger-pt1/</link>
       <pubDate>Sat, 16 Apr 2016 10:33:41 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/wii-fitbit-logger-pt1/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/wii-fitbit-logger-pt1/</guid>
       <description>
 
 &lt;p&gt;There was a &lt;a href=&#34;https://blog.adafruit.com/2016/04/15/weight-tracking-with-a-humorous-text-messaging-scale-pi3-piday-raspberrypi-raspberry_pi/&#34;&gt;pretty interesting post&lt;/a&gt;
@@ -60,10 +60,10 @@ top floor?&lt;/li&gt;
     
     <item>
       <title>Wii Remote Hacks</title>
-      <link>https://hairyhenderson.github.io/post/wiihacks/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/wiihacks/</link>
       <pubDate>Sun, 13 Dec 2015 13:42:50 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/wiihacks/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/wiihacks/</guid>
       <description>&lt;p&gt;It&amp;rsquo;d be cool to use the Wiimote and/or nunchuck as an input device to control
 I dunno, a drone or something?&lt;/p&gt;
 

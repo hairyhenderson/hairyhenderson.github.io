@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>interesting things</title>
-    <link>https://hairyhenderson.github.io/</link>
+    <link>https://hairyhenderson.github.io/blog/public/</link>
     <description>Recent content on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 22:19:39 -0400</lastBuildDate>
-    <atom:link href="https://hairyhenderson.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hairyhenderson.github.io/blog/public/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Getting YubiKey working with Docker Content Trust on OS X</title>
-      <link>https://hairyhenderson.github.io/post/yubikey-dct/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/yubikey-dct/</link>
       <pubDate>Thu, 30 Jun 2016 22:19:39 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/yubikey-dct/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/yubikey-dct/</guid>
       <description>
 
 &lt;h1 id=&#34;getting-yubikey-working-with-docker-content-trust-on-os-x&#34;&gt;Getting YubiKey working with Docker Content Trust on OS X&lt;/h1&gt;
@@ -143,10 +143,10 @@ Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
     
     <item>
       <title>Wii Balance Board Fitbit logger - Part 1</title>
-      <link>https://hairyhenderson.github.io/post/wii-fitbit-logger-pt1/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/wii-fitbit-logger-pt1/</link>
       <pubDate>Sat, 16 Apr 2016 10:33:41 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/wii-fitbit-logger-pt1/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/wii-fitbit-logger-pt1/</guid>
       <description>
 
 &lt;p&gt;There was a &lt;a href=&#34;https://blog.adafruit.com/2016/04/15/weight-tracking-with-a-humorous-text-messaging-scale-pi3-piday-raspberrypi-raspberry_pi/&#34;&gt;pretty interesting post&lt;/a&gt;
@@ -192,10 +192,10 @@ top floor?&lt;/li&gt;
     
     <item>
       <title>Wii Remote Hacks</title>
-      <link>https://hairyhenderson.github.io/post/wiihacks/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/wiihacks/</link>
       <pubDate>Sun, 13 Dec 2015 13:42:50 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/wiihacks/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/wiihacks/</guid>
       <description>&lt;p&gt;It&amp;rsquo;d be cool to use the Wiimote and/or nunchuck as an input device to control
 I dunno, a drone or something?&lt;/p&gt;
 
@@ -216,10 +216,10 @@ nunchuck and other devices (like the classic controller) to use them directly&lt
     
     <item>
       <title>asciinema</title>
-      <link>https://hairyhenderson.github.io/post/asciinema/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/asciinema/</link>
       <pubDate>Sat, 12 Dec 2015 13:21:28 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/asciinema/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/asciinema/</guid>
       <description>
 
 &lt;p&gt;Ran into this a while back, but I keep forgetting about it:  &lt;a href=&#34;https://asciinema.org&#34;&gt;https://asciinema.org&lt;/a&gt;&lt;/p&gt;
@@ -268,10 +268,10 @@ undefined
     
     <item>
       <title>Using Hugo</title>
-      <link>https://hairyhenderson.github.io/post/using_hugo/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/using_hugo/</link>
       <pubDate>Sat, 12 Dec 2015 12:38:40 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/using_hugo/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/using_hugo/</guid>
       <description>
 
 &lt;p&gt;Hugo&amp;rsquo;s pretty simple to use, but I use it so sporadically I figured I should jot down how I use it&amp;hellip;&lt;/p&gt;
@@ -329,20 +329,20 @@ undefined
     
     <item>
       <title>about</title>
-      <link>https://hairyhenderson.github.io/about/</link>
+      <link>https://hairyhenderson.github.io/blog/public/about/</link>
       <pubDate>Sun, 07 Jun 2015 20:51:59 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/about/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/about/</guid>
       <description>&lt;p&gt;This blog is mostly for my own personal use, as a reminder for stuff I&amp;rsquo;ll probably forget, and a place to jot down neat stuff I&amp;rsquo;ve run into.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>License</title>
-      <link>https://hairyhenderson.github.io/license/</link>
+      <link>https://hairyhenderson.github.io/blog/public/license/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://hairyhenderson.github.io/license/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/license/</guid>
       <description>
 
 &lt;h3 id=&#34;content-license&#34;&gt;Content license&lt;/h3&gt;

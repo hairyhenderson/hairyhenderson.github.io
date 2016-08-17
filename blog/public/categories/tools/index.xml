@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tools on interesting things</title>
-    <link>https://hairyhenderson.github.io/categories/tools/</link>
+    <link>https://hairyhenderson.github.io/blog/public/categories/tools/</link>
     <description>Recent content in Tools on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 12 Dec 2015 13:21:28 -0500</lastBuildDate>
-    <atom:link href="https://hairyhenderson.github.io/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/tools/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>asciinema</title>
-      <link>https://hairyhenderson.github.io/post/asciinema/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/asciinema/</link>
       <pubDate>Sat, 12 Dec 2015 13:21:28 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/asciinema/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/asciinema/</guid>
       <description>
 
 &lt;p&gt;Ran into this a while back, but I keep forgetting about it:  &lt;a href=&#34;https://asciinema.org&#34;&gt;https://asciinema.org&lt;/a&gt;&lt;/p&gt;

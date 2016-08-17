@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Notes on interesting things</title>
-    <link>https://hairyhenderson.github.io/categories/notes/</link>
+    <link>https://hairyhenderson.github.io/blog/public/categories/notes/</link>
     <description>Recent content in Notes on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 22:19:39 -0400</lastBuildDate>
-    <atom:link href="https://hairyhenderson.github.io/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/notes/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Getting YubiKey working with Docker Content Trust on OS X</title>
-      <link>https://hairyhenderson.github.io/post/yubikey-dct/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/yubikey-dct/</link>
       <pubDate>Thu, 30 Jun 2016 22:19:39 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/yubikey-dct/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/yubikey-dct/</guid>
       <description>
 
 &lt;h1 id=&#34;getting-yubikey-working-with-docker-content-trust-on-os-x&#34;&gt;Getting YubiKey working with Docker Content Trust on OS X&lt;/h1&gt;
@@ -143,10 +143,10 @@ Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
     
     <item>
       <title>Using Hugo</title>
-      <link>https://hairyhenderson.github.io/post/using_hugo/</link>
+      <link>https://hairyhenderson.github.io/blog/public/post/using_hugo/</link>
       <pubDate>Sat, 12 Dec 2015 12:38:40 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/post/using_hugo/</guid>
+      <guid>https://hairyhenderson.github.io/blog/public/post/using_hugo/</guid>
       <description>
 
 &lt;p&gt;Hugo&amp;rsquo;s pretty simple to use, but I use it so sporadically I figured I should jot down how I use it&amp;hellip;&lt;/p&gt;
