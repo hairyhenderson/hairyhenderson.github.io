@@ -10,18 +10,19 @@
   <title>Getting YubiKey working with Docker Content Trust on OS X &middot; Dave Henderson</title>
 
   
-  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/poole.css">
-  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde.css">
-  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/poole-overrides.css">
-  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde-overrides.css">
-  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde-x.css">
-  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/highlight/tomorrow-night-eighties.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/css/highlight/tomorrow-night-eighties.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://hairyhenderson.github.io/blog/public/touch-icon-144-precomposed.png">
-  <link href="https://hairyhenderson.github.io/blog/public/favicon.png" rel="icon">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://hairyhenderson.github.io/touch-icon-144-precomposed.png">
+  <link href="https://hairyhenderson.github.io/favicon.png" rel="icon">
 
   
   
@@ -31,20 +32,33 @@
   <meta name="description" content="Dave&#39;s random projects, notes, musings...">
   <meta name="keywords" content="yubikey,docker">
   
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-82637990-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
 </head>
 <body>
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <img src="https://www.gravatar.com/avatar/3a457dd69d8817d6a61c7dc07b348bfa?s=200" alt="gravatar">
+      
+        <img src="https://www.gravatar.com/avatar/3a457dd69d8817d6a61c7dc07b348bfa?s=200"
+             alt="gravatar" title="Dave Henderson">
+      
       <h1>Dave Henderson</h1>
       <p class="lead">interesting things</p>
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/blog/public/">Blog</a></li>
+      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/">Blog</a></li>
       
-      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/blog/public/about/">about</a></li>
+      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/about/">about</a></li>
       
     </ul>
 
@@ -52,6 +66,7 @@
       <li class="sidebar-nav-item">
       <a href="https://github.com/hairyhenderson"><i class="fa fa-github-square fa-3x"></i></a>
       <a href="https://bitbucket.org/hairyhenderson"><i class="fa fa-bitbucket-square fa-3x"></i></a>
+      
       <a href="https://ca.linkedin.com/in/hairyhenderson"><i class="fa fa-linkedin-square fa-3x"></i></a>
       
       <a href="https://www.facebook.com/dave.a.henderson"><i class="fa fa-facebook-square fa-3x"></i></a>
@@ -63,7 +78,7 @@
 
     
 
-    <p>Copyright &copy; 2016 <a href="https://hairyhenderson.github.io/blog/public/license/">License</a><br/>
+    <p>Copyright &copy; 2016 <a href="https://hairyhenderson.github.io/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
   </div>
 </div>
@@ -71,15 +86,15 @@
 
 <div class="content container">
   <div class="post">
-    <h1>Getting YubiKey working with Docker Content Trust on OS X</h1>
-    <span class="post-date">Jun 30, 2016 &middot; 3 minute read &middot; <a href="https://hairyhenderson.github.io/blog/public/post/yubikey-dct/#disqus_thread">Comments</a>
+    <h1 class="post-title">Getting YubiKey working with Docker Content Trust on OS X</h1>
+    <span class="post-date">Jun 30, 2016 &middot; 3 minute read &middot; <a href="https://hairyhenderson.github.io/post/yubikey-dct/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="https://hairyhenderson.github.io/blog/public/categories/notes">notes</a><a class="label" href="https://hairyhenderson.github.io/blog/public/categories/docker">docker</a>
+    <a class="label" href="https://hairyhenderson.github.io/categories/notes">notes</a><a class="label" href="https://hairyhenderson.github.io/categories/docker">docker</a>
     </span>
     
 
-<h1 id="getting-yubikey-working-with-docker-content-trust-on-os-x:8de52b836e4520addf1801deb6384fc7">Getting YubiKey working with Docker Content Trust on OS X</h1>
+<h1 id="getting-yubikey-working-with-docker-content-trust-on-os-x">Getting YubiKey working with Docker Content Trust on OS X</h1>
 
 <p>This wasn&rsquo;t as straightforward as I would&rsquo;ve liked, so I&rsquo;m documenting this here.</p>
 
@@ -95,14 +110,14 @@
 
 <p>I only figured this out because the folks above did most of the work!</p>
 
-<h2 id="preparation:8de52b836e4520addf1801deb6384fc7">Preparation&hellip;</h2>
+<h2 id="preparation">Preparation&hellip;</h2>
 
-<h3 id="install-notary:8de52b836e4520addf1801deb6384fc7">Install notary</h3>
+<h3 id="install-notary">Install notary</h3>
 
 <p>Just a matter of grabbing the latest from <a href="https://github.com/docker/notary/releases">https://github.com/docker/notary/releases</a>
 and putting the <code>notary</code> binary in the path somewhere (like <code>~/bin</code> in my case).</p>
 
-<h3 id="install-the-yubikey-piv-shared-libraries:8de52b836e4520addf1801deb6384fc7">Install the YubiKey PIV shared libraries</h3>
+<h3 id="install-the-yubikey-piv-shared-libraries">Install the YubiKey PIV shared libraries</h3>
 
 <ul>
 <li><p>First download the <a href="https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip">PIV CLI tool zip</a> and extract it somewhere</p>
@@ -131,7 +146,7 @@ DEBU[0000] Initialized PKCS11 library /usr/local/docker/lib/libykcs11.dylib and 
 <li><p>The key is that <code>started HSM session</code> bit</p></li>
 </ul>
 
-<h2 id="configuration:8de52b836e4520addf1801deb6384fc7">Configuration&hellip;</h2>
+<h2 id="configuration">Configuration&hellip;</h2>
 
 <p>Ok now we&rsquo;re ready to create a key:</p>
 
@@ -172,7 +187,7 @@ root         deadbeef....   yubikey
 </code></pre></li>
 </ul>
 
-<h2 id="signing-on-push:8de52b836e4520addf1801deb6384fc7">Signing on push</h2>
+<h2 id="signing-on-push">Signing on push</h2>
 
 <p>And now for the magic:</p>
 
@@ -229,9 +244,8 @@ var disqus_shortname = "hairyhenderson";
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-<script src="https://hairyhenderson.github.io/blog/public/js/highlight.pack.js"></script>
+<script src="https://hairyhenderson.github.io/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-
 </body>
 </html>
 

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>interesting things</title>
-    <link>https://hairyhenderson.github.io/blog/public/</link>
+    <link>https://hairyhenderson.github.io/</link>
     <description>Recent content on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 22:19:39 -0400</lastBuildDate>
-    <atom:link href="https://hairyhenderson.github.io/blog/public/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hairyhenderson.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Getting YubiKey working with Docker Content Trust on OS X</title>
-      <link>https://hairyhenderson.github.io/blog/public/post/yubikey-dct/</link>
+      <link>https://hairyhenderson.github.io/post/yubikey-dct/</link>
       <pubDate>Thu, 30 Jun 2016 22:19:39 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/blog/public/post/yubikey-dct/</guid>
+      <guid>https://hairyhenderson.github.io/post/yubikey-dct/</guid>
       <description>
 
-&lt;h1 id=&#34;getting-yubikey-working-with-docker-content-trust-on-os-x:8de52b836e4520addf1801deb6384fc7&#34;&gt;Getting YubiKey working with Docker Content Trust on OS X&lt;/h1&gt;
+&lt;h1 id=&#34;getting-yubikey-working-with-docker-content-trust-on-os-x&#34;&gt;Getting YubiKey working with Docker Content Trust on OS X&lt;/h1&gt;
 
 &lt;p&gt;This wasn&amp;rsquo;t as straightforward as I would&amp;rsquo;ve liked, so I&amp;rsquo;m documenting this here.&lt;/p&gt;
 
@@ -33,14 +33,14 @@
 
 &lt;p&gt;I only figured this out because the folks above did most of the work!&lt;/p&gt;
 
-&lt;h2 id=&#34;preparation:8de52b836e4520addf1801deb6384fc7&#34;&gt;Preparation&amp;hellip;&lt;/h2&gt;
+&lt;h2 id=&#34;preparation&#34;&gt;Preparation&amp;hellip;&lt;/h2&gt;
 
-&lt;h3 id=&#34;install-notary:8de52b836e4520addf1801deb6384fc7&#34;&gt;Install notary&lt;/h3&gt;
+&lt;h3 id=&#34;install-notary&#34;&gt;Install notary&lt;/h3&gt;
 
 &lt;p&gt;Just a matter of grabbing the latest from &lt;a href=&#34;https://github.com/docker/notary/releases&#34;&gt;https://github.com/docker/notary/releases&lt;/a&gt;
 and putting the &lt;code&gt;notary&lt;/code&gt; binary in the path somewhere (like &lt;code&gt;~/bin&lt;/code&gt; in my case).&lt;/p&gt;
 
-&lt;h3 id=&#34;install-the-yubikey-piv-shared-libraries:8de52b836e4520addf1801deb6384fc7&#34;&gt;Install the YubiKey PIV shared libraries&lt;/h3&gt;
+&lt;h3 id=&#34;install-the-yubikey-piv-shared-libraries&#34;&gt;Install the YubiKey PIV shared libraries&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;First download the &lt;a href=&#34;https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip&#34;&gt;PIV CLI tool zip&lt;/a&gt; and extract it somewhere&lt;/p&gt;
@@ -69,7 +69,7 @@ DEBU[0000] Initialized PKCS11 library /usr/local/docker/lib/libykcs11.dylib and 
 &lt;li&gt;&lt;p&gt;The key is that &lt;code&gt;started HSM session&lt;/code&gt; bit&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;configuration:8de52b836e4520addf1801deb6384fc7&#34;&gt;Configuration&amp;hellip;&lt;/h2&gt;
+&lt;h2 id=&#34;configuration&#34;&gt;Configuration&amp;hellip;&lt;/h2&gt;
 
 &lt;p&gt;Ok now we&amp;rsquo;re ready to create a key:&lt;/p&gt;
 
@@ -110,7 +110,7 @@ root         deadbeef....   yubikey
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;signing-on-push:8de52b836e4520addf1801deb6384fc7&#34;&gt;Signing on push&lt;/h2&gt;
+&lt;h2 id=&#34;signing-on-push&#34;&gt;Signing on push&lt;/h2&gt;
 
 &lt;p&gt;And now for the magic:&lt;/p&gt;
 
@@ -143,10 +143,10 @@ Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
     
     <item>
       <title>Wii Balance Board Fitbit logger - Part 1</title>
-      <link>https://hairyhenderson.github.io/blog/public/post/wii-fitbit-logger-pt1/</link>
+      <link>https://hairyhenderson.github.io/post/wii-fitbit-logger-pt1/</link>
       <pubDate>Sat, 16 Apr 2016 10:33:41 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/blog/public/post/wii-fitbit-logger-pt1/</guid>
+      <guid>https://hairyhenderson.github.io/post/wii-fitbit-logger-pt1/</guid>
       <description>
 
 &lt;p&gt;There was a &lt;a href=&#34;https://blog.adafruit.com/2016/04/15/weight-tracking-with-a-humorous-text-messaging-scale-pi3-piday-raspberrypi-raspberry_pi/&#34;&gt;pretty interesting post&lt;/a&gt;
@@ -161,7 +161,7 @@ battery power and I&amp;rsquo;d have to go charge it soon. This got me thinking&
 What if I could use my Wii Balance Board to send weight updates to Fitbit
 through their API?&lt;/p&gt;
 
-&lt;h3 id=&#34;some-gaps:ff6a7f420f3f0c7d1e6f38eeab20d380&#34;&gt;Some gaps&amp;hellip;&lt;/h3&gt;
+&lt;h3 id=&#34;some-gaps&#34;&gt;Some gaps&amp;hellip;&lt;/h3&gt;
 
 &lt;p&gt;So there&amp;rsquo;s a few things I&amp;rsquo;ll need to figure out:&lt;/p&gt;
 
@@ -192,10 +192,10 @@ top floor?&lt;/li&gt;
     
     <item>
       <title>Wii Remote Hacks</title>
-      <link>https://hairyhenderson.github.io/blog/public/post/wiihacks/</link>
+      <link>https://hairyhenderson.github.io/post/wiihacks/</link>
       <pubDate>Sun, 13 Dec 2015 13:42:50 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/blog/public/post/wiihacks/</guid>
+      <guid>https://hairyhenderson.github.io/post/wiihacks/</guid>
       <description>&lt;p&gt;It&amp;rsquo;d be cool to use the Wiimote and/or nunchuck as an input device to control
 I dunno, a drone or something?&lt;/p&gt;
 
@@ -216,15 +216,15 @@ nunchuck and other devices (like the classic controller) to use them directly&lt
     
     <item>
       <title>asciinema</title>
-      <link>https://hairyhenderson.github.io/blog/public/post/asciinema/</link>
+      <link>https://hairyhenderson.github.io/post/asciinema/</link>
       <pubDate>Sat, 12 Dec 2015 13:21:28 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/blog/public/post/asciinema/</guid>
+      <guid>https://hairyhenderson.github.io/post/asciinema/</guid>
       <description>
 
 &lt;p&gt;Ran into this a while back, but I keep forgetting about it:  &lt;a href=&#34;https://asciinema.org&#34;&gt;https://asciinema.org&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;using:14aad19d430f731176587076120fa85f&#34;&gt;Using&lt;/h2&gt;
+&lt;h2 id=&#34;using&#34;&gt;Using&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ asciinema rec
 ...
@@ -234,7 +234,7 @@ $ exit
 
 &lt;p&gt;It&amp;rsquo;ll start a new shell and record all the things (including timing and mistakes!), then upload it to their site for serving.&lt;/p&gt;
 
-&lt;h2 id=&#34;modifying:14aad19d430f731176587076120fa85f&#34;&gt;Modifying&lt;/h2&gt;
+&lt;h2 id=&#34;modifying&#34;&gt;Modifying&lt;/h2&gt;
 
 &lt;p&gt;Download it:&lt;/p&gt;
 
@@ -248,7 +248,7 @@ $ exit
 &lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ asciinema upload rec.json
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;other-useful-options:14aad19d430f731176587076120fa85f&#34;&gt;Other useful options&lt;/h2&gt;
+&lt;h2 id=&#34;other-useful-options&#34;&gt;Other useful options&lt;/h2&gt;
 
 &lt;p&gt;Record something that isn&amp;rsquo;t a shell:&lt;/p&gt;
 
@@ -268,10 +268,10 @@ undefined
     
     <item>
       <title>Using Hugo</title>
-      <link>https://hairyhenderson.github.io/blog/public/post/using_hugo/</link>
+      <link>https://hairyhenderson.github.io/post/using_hugo/</link>
       <pubDate>Sat, 12 Dec 2015 12:38:40 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/blog/public/post/using_hugo/</guid>
+      <guid>https://hairyhenderson.github.io/post/using_hugo/</guid>
       <description>
 
 &lt;p&gt;Hugo&amp;rsquo;s pretty simple to use, but I use it so sporadically I figured I should jot down how I use it&amp;hellip;&lt;/p&gt;
@@ -279,7 +279,7 @@ undefined
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; All the following commands assume I&amp;rsquo;m in the &lt;code&gt;/blog&lt;/code&gt; subdirectory of the
 &lt;a href=&#34;https://github.com/hairyhenderson/hairyhenderson.github.io&#34;&gt;repo&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;installation:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Installation&lt;/h2&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
 
 &lt;p&gt;I installed it with Homebrew:&lt;/p&gt;
 
@@ -288,14 +288,14 @@ undefined
 
 &lt;p&gt;so to upgrade it I just &lt;code&gt;brew update &amp;amp;&amp;amp; brew upgrade&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;previewing:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Previewing&lt;/h2&gt;
+&lt;h2 id=&#34;previewing&#34;&gt;Previewing&lt;/h2&gt;
 
 &lt;p&gt;To get &lt;code&gt;hugo&lt;/code&gt; to render on-the-fly:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo server --watch --buildDrafts
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;writing-new-articles:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Writing new articles&lt;/h2&gt;
+&lt;h2 id=&#34;writing-new-articles&#34;&gt;Writing new articles&lt;/h2&gt;
 
 &lt;p&gt;To start a new post:&lt;/p&gt;
 
@@ -314,7 +314,7 @@ undefined
 
 &lt;p&gt;Update the &lt;code&gt;categories&lt;/code&gt; and &lt;code&gt;title&lt;/code&gt; fields, and set &lt;code&gt;draft = true&lt;/code&gt; in the front matter if necessary.&lt;/p&gt;
 
-&lt;h2 id=&#34;publishing:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Publishing&lt;/h2&gt;
+&lt;h2 id=&#34;publishing&#34;&gt;Publishing&lt;/h2&gt;
 
 &lt;p&gt;Regenerate the site&lt;/p&gt;
 
@@ -329,23 +329,23 @@ undefined
     
     <item>
       <title>about</title>
-      <link>https://hairyhenderson.github.io/blog/public/about/</link>
+      <link>https://hairyhenderson.github.io/about/</link>
       <pubDate>Sun, 07 Jun 2015 20:51:59 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/blog/public/about/</guid>
+      <guid>https://hairyhenderson.github.io/about/</guid>
       <description>&lt;p&gt;This blog is mostly for my own personal use, as a reminder for stuff I&amp;rsquo;ll probably forget, and a place to jot down neat stuff I&amp;rsquo;ve run into.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>License</title>
-      <link>https://hairyhenderson.github.io/blog/public/license/</link>
+      <link>https://hairyhenderson.github.io/license/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://hairyhenderson.github.io/blog/public/license/</guid>
+      <guid>https://hairyhenderson.github.io/license/</guid>
       <description>
 
-&lt;h3 id=&#34;content-license:53e892b8b41cc4caece1cfd5ef21d6e7&#34;&gt;Content license&lt;/h3&gt;
+&lt;h3 id=&#34;content-license&#34;&gt;Content license&lt;/h3&gt;
 
 &lt;p&gt;All &lt;em&gt;non-code&lt;/em&gt; blog content is licensed as follows:&lt;/p&gt;
 
@@ -353,7 +353,7 @@ undefined
 
 &lt;p&gt;This work by &lt;span xmlns:cc=&#34;http://creativecommons.org/ns#&#34; property=&#34;cc:attributionName&#34;&gt;Dave Henderson&lt;/span&gt; is licensed under a &lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by/4.0/&#34;&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;code-license:53e892b8b41cc4caece1cfd5ef21d6e7&#34;&gt;Code license&lt;/h3&gt;
+&lt;h3 id=&#34;code-license&#34;&gt;Code license&lt;/h3&gt;
 
 &lt;p&gt;All source code files and snippets found on this blog, unless otherwise explicitly
 noted, are licensed under the terms below:&lt;/p&gt;

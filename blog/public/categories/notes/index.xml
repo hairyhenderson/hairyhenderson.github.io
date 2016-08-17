@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Notes on interesting things</title>
-    <link>https://hairyhenderson.github.io/blog/public/categories/notes/</link>
+    <link>https://hairyhenderson.github.io/categories/notes/</link>
     <description>Recent content in Notes on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jun 2016 22:19:39 -0400</lastBuildDate>
-    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hairyhenderson.github.io/categories/notes/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Getting YubiKey working with Docker Content Trust on OS X</title>
-      <link>https://hairyhenderson.github.io/blog/public/post/yubikey-dct/</link>
+      <link>https://hairyhenderson.github.io/post/yubikey-dct/</link>
       <pubDate>Thu, 30 Jun 2016 22:19:39 -0400</pubDate>
       
-      <guid>https://hairyhenderson.github.io/blog/public/post/yubikey-dct/</guid>
+      <guid>https://hairyhenderson.github.io/post/yubikey-dct/</guid>
       <description>
 
-&lt;h1 id=&#34;getting-yubikey-working-with-docker-content-trust-on-os-x:8de52b836e4520addf1801deb6384fc7&#34;&gt;Getting YubiKey working with Docker Content Trust on OS X&lt;/h1&gt;
+&lt;h1 id=&#34;getting-yubikey-working-with-docker-content-trust-on-os-x&#34;&gt;Getting YubiKey working with Docker Content Trust on OS X&lt;/h1&gt;
 
 &lt;p&gt;This wasn&amp;rsquo;t as straightforward as I would&amp;rsquo;ve liked, so I&amp;rsquo;m documenting this here.&lt;/p&gt;
 
@@ -33,14 +33,14 @@
 
 &lt;p&gt;I only figured this out because the folks above did most of the work!&lt;/p&gt;
 
-&lt;h2 id=&#34;preparation:8de52b836e4520addf1801deb6384fc7&#34;&gt;Preparation&amp;hellip;&lt;/h2&gt;
+&lt;h2 id=&#34;preparation&#34;&gt;Preparation&amp;hellip;&lt;/h2&gt;
 
-&lt;h3 id=&#34;install-notary:8de52b836e4520addf1801deb6384fc7&#34;&gt;Install notary&lt;/h3&gt;
+&lt;h3 id=&#34;install-notary&#34;&gt;Install notary&lt;/h3&gt;
 
 &lt;p&gt;Just a matter of grabbing the latest from &lt;a href=&#34;https://github.com/docker/notary/releases&#34;&gt;https://github.com/docker/notary/releases&lt;/a&gt;
 and putting the &lt;code&gt;notary&lt;/code&gt; binary in the path somewhere (like &lt;code&gt;~/bin&lt;/code&gt; in my case).&lt;/p&gt;
 
-&lt;h3 id=&#34;install-the-yubikey-piv-shared-libraries:8de52b836e4520addf1801deb6384fc7&#34;&gt;Install the YubiKey PIV shared libraries&lt;/h3&gt;
+&lt;h3 id=&#34;install-the-yubikey-piv-shared-libraries&#34;&gt;Install the YubiKey PIV shared libraries&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;First download the &lt;a href=&#34;https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip&#34;&gt;PIV CLI tool zip&lt;/a&gt; and extract it somewhere&lt;/p&gt;
@@ -69,7 +69,7 @@ DEBU[0000] Initialized PKCS11 library /usr/local/docker/lib/libykcs11.dylib and 
 &lt;li&gt;&lt;p&gt;The key is that &lt;code&gt;started HSM session&lt;/code&gt; bit&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;configuration:8de52b836e4520addf1801deb6384fc7&#34;&gt;Configuration&amp;hellip;&lt;/h2&gt;
+&lt;h2 id=&#34;configuration&#34;&gt;Configuration&amp;hellip;&lt;/h2&gt;
 
 &lt;p&gt;Ok now we&amp;rsquo;re ready to create a key:&lt;/p&gt;
 
@@ -110,7 +110,7 @@ root         deadbeef....   yubikey
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;signing-on-push:8de52b836e4520addf1801deb6384fc7&#34;&gt;Signing on push&lt;/h2&gt;
+&lt;h2 id=&#34;signing-on-push&#34;&gt;Signing on push&lt;/h2&gt;
 
 &lt;p&gt;And now for the magic:&lt;/p&gt;
 
@@ -143,10 +143,10 @@ Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
     
     <item>
       <title>Using Hugo</title>
-      <link>https://hairyhenderson.github.io/blog/public/post/using_hugo/</link>
+      <link>https://hairyhenderson.github.io/post/using_hugo/</link>
       <pubDate>Sat, 12 Dec 2015 12:38:40 -0500</pubDate>
       
-      <guid>https://hairyhenderson.github.io/blog/public/post/using_hugo/</guid>
+      <guid>https://hairyhenderson.github.io/post/using_hugo/</guid>
       <description>
 
 &lt;p&gt;Hugo&amp;rsquo;s pretty simple to use, but I use it so sporadically I figured I should jot down how I use it&amp;hellip;&lt;/p&gt;
@@ -154,7 +154,7 @@ Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; All the following commands assume I&amp;rsquo;m in the &lt;code&gt;/blog&lt;/code&gt; subdirectory of the
 &lt;a href=&#34;https://github.com/hairyhenderson/hairyhenderson.github.io&#34;&gt;repo&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;installation:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Installation&lt;/h2&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
 
 &lt;p&gt;I installed it with Homebrew:&lt;/p&gt;
 
@@ -163,14 +163,14 @@ Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
 
 &lt;p&gt;so to upgrade it I just &lt;code&gt;brew update &amp;amp;&amp;amp; brew upgrade&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;previewing:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Previewing&lt;/h2&gt;
+&lt;h2 id=&#34;previewing&#34;&gt;Previewing&lt;/h2&gt;
 
 &lt;p&gt;To get &lt;code&gt;hugo&lt;/code&gt; to render on-the-fly:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo server --watch --buildDrafts
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;writing-new-articles:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Writing new articles&lt;/h2&gt;
+&lt;h2 id=&#34;writing-new-articles&#34;&gt;Writing new articles&lt;/h2&gt;
 
 &lt;p&gt;To start a new post:&lt;/p&gt;
 
@@ -189,7 +189,7 @@ Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
 
 &lt;p&gt;Update the &lt;code&gt;categories&lt;/code&gt; and &lt;code&gt;title&lt;/code&gt; fields, and set &lt;code&gt;draft = true&lt;/code&gt; in the front matter if necessary.&lt;/p&gt;
 
-&lt;h2 id=&#34;publishing:5bdf9ff4f70a51c79abdc3fa948e7c66&#34;&gt;Publishing&lt;/h2&gt;
+&lt;h2 id=&#34;publishing&#34;&gt;Publishing&lt;/h2&gt;
 
 &lt;p&gt;Regenerate the site&lt;/p&gt;
 
