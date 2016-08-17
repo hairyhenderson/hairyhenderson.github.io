@@ -1,3 +1,4 @@
 [submodule "hyde-x"]
 	path = blog/themes/hyde-x
 	url = https://github.com/hairyhenderson/hyde-x.git
+	branch = fix-base-url
