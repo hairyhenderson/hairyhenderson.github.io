@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interesting things</title>
+    <link>https://hairyhenderson.github.io/blog/public/categories/github/index.xml</link>
+    <description>Recent content on interesting things</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Verified GitHub commits with Keybase</title>
+      <link>https://hairyhenderson.github.io/blog/public/post/verified_github_commits_with_keybase/</link>
+      <pubDate>Thu, 06 Oct 2016 22:45:49 -0400</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/post/verified_github_commits_with_keybase/</guid>
+      <description>
+
+&lt;p&gt;A &lt;em&gt;while&lt;/em&gt; back, GitHub &lt;a href=&#34;https://github.com/blog/2144-gpg-signature-verification&#34;&gt;announced&lt;/a&gt;
+support for GPG signature verification. Now, git has supported signing commits
+and tags for a while, but it was a pain to manually verify signed commits, so I&amp;rsquo;m
+not sure the average developer even considered it.&lt;/p&gt;
+
+&lt;p&gt;I saw the announcement, and messed around with it for a few minutes then forgot
+about it, because I don&amp;rsquo;t use GPG very often, and it hadn&amp;rsquo;t yet clicked that
+Keybase is really just a GPG management tool&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://keybase.io&#34;&gt;Keybase&lt;/a&gt; is great - it pretty much solves that pesky PGP/GPG
+web-of-trust problem without forcing you to go to those awkward key signing parties
+(are those still a thing?). Also it makes it dead-simple to encrypt/decrypt stuff,
+especially now that they&amp;rsquo;ve launched the &lt;a href=&#34;https://keybase.io/docs/kbfs&#34;&gt;Keybase File System&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, there isn&amp;rsquo;t a super-simple path from Keybase to GitHub verified
+commits, largely because there&amp;rsquo;s two other tools involved (and frankly, doing
+the &lt;em&gt;real&lt;/em&gt; work): Git and GnuPG.&lt;/p&gt;
+
+&lt;p&gt;So, for anyone else who wants to do this, but especially for my own memory, here&amp;rsquo;s
+how I set up Git and GnuPG on my Mac to sign commits with my Keybase identity&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h2&gt;
+
+&lt;p&gt;The tools I&amp;rsquo;m using are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;li&gt;GnuPG (especially &lt;code&gt;gpg&lt;/code&gt; and &lt;code&gt;gpg-agent&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Keybase&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/GPGTools/pinentry-mac&#34;&gt;Pinentry for GPG on Mac&lt;/a&gt; (which is
+a part of GPGTools)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I installed all of these (except Keybase) with &lt;a href=&#34;https://brew.sh&#34;&gt;Homebrew&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ brew install git gnupg pinentry-mac
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I installed Keybase from &lt;a href=&#34;https://keybase.io/download&#34;&gt;https://keybase.io/download&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;m going to leave setting Keybase up as an exercise to the reader. My process
+was a little convoluted:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;figuring out how to get my GPG key out of Keybase&lt;/li&gt;
+&lt;li&gt;importing my Keybase key into &lt;code&gt;gpg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;configuring &lt;code&gt;git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;adding my key to GitHub&lt;/li&gt;
+&lt;li&gt;figuring out I needed to use &lt;code&gt;gpg-agent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;realizing that &lt;code&gt;gpg-agent&lt;/code&gt; expires passphrases&lt;/li&gt;
+&lt;li&gt;finding &lt;code&gt;pinentry-mac&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So, I&amp;rsquo;ve put together a bit of a shortcut. Let&amp;rsquo;s get started&amp;hellip;&lt;/p&gt;
+
+&lt;h3 id=&#34;getting-keybase-to-cough-up-my-key-pair&#34;&gt;Getting Keybase to cough up my key pair&lt;/h3&gt;
+
+&lt;p&gt;The first step&amp;rsquo;s easy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ keybase pgp export &amp;gt; keybase-public.key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This gets my public key, but I need the secret key too. To do that,
+there&amp;rsquo;s a couple options - Keybase lets you export the private key (after
+authenticating) from the web UI, but an easier commandline way is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ keybase pgp export -s &amp;gt; keybase-private.key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;ll prompt for the passphrase.&lt;/p&gt;
+
+&lt;p&gt;Ok, now we have the key pair!&lt;/p&gt;
+
+&lt;h3 id=&#34;importing-the-key-pair-into-the-gpg-keychain&#34;&gt;Importing the key pair into the GPG keychain&lt;/h3&gt;
+
+&lt;p&gt;This is probably the most involved step,&lt;/p&gt;
+
+&lt;p&gt;First the public:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ gpg --import keybase-public.key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now private:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ gpg --allow-secret-key-import --import keybase-private.key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok, cool. If I type &lt;code&gt;gpg --list-secret-keys&lt;/code&gt; now, I see my key:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ gpg --list-secret-keys
+/Users/hairyhenderson/.gnupg/secring.gpg
+-----------------------------
+sec   4096R/9AB1B536 2014-11-19
+uid                  keybase.io/dhenderson &amp;lt;dhenderson@keybase.io&amp;gt;
+ssb   2048R/5DCE5AFA 2014-11-19
+ssb   2048R/30CF03B1 2014-11-19
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The one important bit to take away from that is the key ID - the bit after the &lt;code&gt;/&lt;/code&gt;
+in the &lt;code&gt;sec&lt;/code&gt; entry: &lt;code&gt;9AB1B536&lt;/code&gt; in my case.&lt;/p&gt;
+
+&lt;p&gt;In my case I only had one e-mail address associated with it - &lt;code&gt;dhenderson@keybase.io&lt;/code&gt;.
+I don&amp;rsquo;t have any access to that mail account, and I certainly never sign commits
+with that address. So I need to add my regular e-mail address to the key:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ gpg --edit &amp;lt;key id&amp;gt;
+gpg (GnuPG) 2.0.30; Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Secret key is available.
+
+pub  4096R/9AB1B536  created: 2014-11-19  expires: never       usage: SCEA
+                     trust: unknown       validity: unknown
+sub  2048R/5DCE5AFA  created: 2014-11-19  expires: 2022-11-17  usage: S   
+sub  2048R/30CF03B1  created: 2014-11-19  expires: 2022-11-17  usage: E   
+[unknown] (2)  keybase.io/dhenderson &amp;lt;dhenderson@keybase.io&amp;gt;
+
+gpg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At this point, enter &lt;code&gt;adduid&lt;/code&gt; and it&amp;rsquo;ll prompt for various information:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;gpg&amp;gt; adduid
+Real name: Dave Henderson
+Email address: another@address.com
+Comment:
+You selected this USER-ID:
+    &amp;quot;Dave Henderson &amp;lt;another@address.com&amp;gt;&amp;quot;
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;ll prompt for the passphrase and then you&amp;rsquo;re back at the &lt;code&gt;gpg&amp;gt;&lt;/code&gt; prompt.&lt;/p&gt;
+
+&lt;p&gt;Now, one more change - not &lt;em&gt;strictly&lt;/em&gt; necessary, but will avoid weird warnings
+later: set my own identity to ultimate trust. Use the &lt;code&gt;trust&lt;/code&gt; command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;gpg&amp;gt; trust
+pub  4096R/9AB1B536  created: 2014-11-19  expires: never       usage: SCEA
+                     trust: unknown      validity: unknown
+sub  2048R/5DCE5AFA  created: 2014-11-19  expires: 2022-11-17  usage: S   
+sub  2048R/30CF03B1  created: 2014-11-19  expires: 2022-11-17  usage: E   
+[unknown] (1)  Dave Henderson &amp;lt;another@address.com&amp;gt;
+[unknown] (2)  keybase.io/dhenderson &amp;lt;dhenderson@keybase.io&amp;gt;
+
+Please decide how far you trust this user to correctly verify other users&#39; keys
+(by looking at passports, checking fingerprints from different sources, etc.)
+
+  1 = I don&#39;t know or won&#39;t say
+  2 = I do NOT trust
+  3 = I trust marginally
+  4 = I trust fully
+  5 = I trust ultimately
+  m = back to the main menu
+
+Your decision? 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finish the session with the &lt;code&gt;save&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;Ok, last step here: update Keybase with the updated key:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ keybase pgp update
+▶ INFO Posting update for key 22600e46075b206041e8f730407ccdee9ab1b536.
+▶ INFO Update succeeded for key 22600e46075b206041e8f730407ccdee9ab1b536.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;configuring-git&#34;&gt;Configuring Git&lt;/h3&gt;
+
+&lt;p&gt;This part&amp;rsquo;s pretty straightforward. I just want to tell Git which key to use
+by default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ git config --global user.signingkey 9AB1B536
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;configuring-github&#34;&gt;Configuring GitHub&lt;/h3&gt;
+
+&lt;p&gt;This part&amp;rsquo;s &lt;em&gt;really&lt;/em&gt; straightforward. All I needed to do is open
+&lt;a href=&#34;https://github.com/settings/keys&#34;&gt;https://github.com/settings/keys&lt;/a&gt; and create a new key by pasting in the contents
+of my public key.&lt;/p&gt;
+
+&lt;h3 id=&#34;configuring-gpg-agent&#34;&gt;Configuring &lt;code&gt;gpg-agent&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Almost there! I had to create a new &lt;code&gt;~/.gnupg/gpg-agent.conf&lt;/code&gt; file. The contents
+are:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;use-standard-socket
+pinentry-program /usr/local/bin/pinentry-mac
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then in &lt;code&gt;~/.gnupg/gpg.conf&lt;/code&gt;, I added a line that says:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;use-agent
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! Ready to sign commits now!&lt;/p&gt;
+
+&lt;h2 id=&#34;signing-commits&#34;&gt;Signing commits&lt;/h2&gt;
+
+&lt;p&gt;And now, the fruit of our labours. I can just use the &lt;code&gt;-S&lt;/code&gt; flag when I make a
+commit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ git commit -S -m &amp;quot;whoa, there&#39;s cryptographic proof this was written by me&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, when I first looked at this I wondered if &lt;code&gt;-S&lt;/code&gt; was a &amp;ldquo;stronger&amp;rdquo; version of
+&lt;code&gt;-s&lt;/code&gt;, but it turns out they&amp;rsquo;re completely unrelated. I&amp;rsquo;ve been used to &amp;ldquo;signing&amp;rdquo;
+my commits already with the &lt;code&gt;git commit -s&lt;/code&gt; flag, but this really only adds a
+&lt;code&gt;Signed-off-by&lt;/code&gt; line, which usually just implies acceptance of a &lt;a href=&#34;http://developercertificate.org/&#34;&gt;DCO&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I guess I need to adjust my thinking about this, because - &lt;code&gt;-s&lt;/code&gt; &lt;em&gt;really&lt;/em&gt; means
+&amp;ldquo;sign off&amp;rdquo;, which is pretty obvious once you look at the long form: &lt;code&gt;--signoff&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, &lt;code&gt;-S&lt;/code&gt; (or &lt;code&gt;--gpg-sign&lt;/code&gt;) adds a &lt;em&gt;cryptographic&lt;/em&gt; signature to
+the commit. Cryptographically signing commits means something completely
+different: It gives some proof that the commit was written by the person who
+owns a certain GPG key.&lt;/p&gt;
+
+&lt;p&gt;When this is combined with GitHub&amp;rsquo;s signature verification support, you get
+fairly irrefutable proof that a commit was signed by the person who owns a given
+GitHub account.&lt;/p&gt;
+
+&lt;p&gt;And then, we come full circle when we combine this with Keybase&amp;rsquo;s various proof
+mechanisms, which can prove that the person who owns a certain twitter account,
+a certain website, and a certain reddit account is &lt;em&gt;also&lt;/em&gt; the same person who
+owns that GitHub account.&lt;/p&gt;
+
+&lt;p&gt;👋🔏&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
