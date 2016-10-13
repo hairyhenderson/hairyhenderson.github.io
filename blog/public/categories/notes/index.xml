@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Notes on interesting things</title>
-    <link>https://hairyhenderson.github.io/blog/public/categories/notes/</link>
-    <description>Recent content in Notes on interesting things</description>
+    <title>interesting things</title>
+    <link>https://hairyhenderson.github.io/blog/public/categories/notes/index.xml</link>
+    <description>Recent content on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Jun 2016 22:19:39 -0400</lastBuildDate>
     <atom:link href="https://hairyhenderson.github.io/blog/public/categories/notes/index.xml" rel="self" type="application/rss+xml" />
     
     <item>

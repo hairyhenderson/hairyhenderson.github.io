@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Verified GitHub commits with Keybase &middot; Dave Henderson</title>
+
+  
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/poole.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/poole-overrides.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde-overrides.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde-x.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/highlight/tomorrow-night-eighties.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://hairyhenderson.github.io/blog/public/touch-icon-144-precomposed.png">
+  <link href="https://hairyhenderson.github.io/blog/public/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="How I set up GPG-signed commits with Keybase">
+  <meta name="keywords" content="gpg,keybase,git">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="https://www.gravatar.com/avatar/3a457dd69d8817d6a61c7dc07b348bfa?s=200"
+             alt="gravatar" title="Dave Henderson">
+      
+      <h1>Dave Henderson</h1>
+      <p class="lead">interesting things</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/blog/public/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/blog/public/about/">about</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/hairyhenderson"><i class="fa fa-github-square fa-3x"></i></a>
+      <a href="https://bitbucket.org/hairyhenderson"><i class="fa fa-bitbucket-square fa-3x"></i></a>
+      
+      <a href="https://ca.linkedin.com/in/hairyhenderson"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      <a href="https://www.facebook.com/dave.a.henderson"><i class="fa fa-facebook-square fa-3x"></i></a>
+      <a href="https://twitter.com/hairyhenderson"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 <a href="https://hairyhenderson.github.io/blog/public/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Verified GitHub commits with Keybase</h1>
+    <span class="post-date">Oct 6, 2016 &middot; 6 minute read &middot; <a href="https://hairyhenderson.github.io/blog/public/post/verified_github_commits_with_keybase/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="https://hairyhenderson.github.io/blog/public/categories/github">github</a><a class="label" href="https://hairyhenderson.github.io/blog/public/categories/crypto">crypto</a>
+    </span>
+    
+
+<p>A <em>while</em> back, GitHub <a href="https://github.com/blog/2144-gpg-signature-verification">announced</a>
+support for GPG signature verification. Now, git has supported signing commits
+and tags for a while, but it was a pain to manually verify signed commits, so I&rsquo;m
+not sure the average developer even considered it.</p>
+
+<p>I saw the announcement, and messed around with it for a few minutes then forgot
+about it, because I don&rsquo;t use GPG very often, and it hadn&rsquo;t yet clicked that
+Keybase is really just a GPG management tool&hellip;</p>
+
+<p><a href="https://keybase.io">Keybase</a> is great - it pretty much solves that pesky PGP/GPG
+web-of-trust problem without forcing you to go to those awkward key signing parties
+(are those still a thing?). Also it makes it dead-simple to encrypt/decrypt stuff,
+especially now that they&rsquo;ve launched the <a href="https://keybase.io/docs/kbfs">Keybase File System</a>.</p>
+
+<p>Unfortunately, there isn&rsquo;t a super-simple path from Keybase to GitHub verified
+commits, largely because there&rsquo;s two other tools involved (and frankly, doing
+the <em>real</em> work): Git and GnuPG.</p>
+
+<p>So, for anyone else who wants to do this, but especially for my own memory, here&rsquo;s
+how I set up Git and GnuPG on my Mac to sign commits with my Keybase identity&hellip;</p>
+
+<h2 id="pre-requisites">Pre-requisites</h2>
+
+<p>The tools I&rsquo;m using are:</p>
+
+<ul>
+<li>Git</li>
+<li>GnuPG (especially <code>gpg</code> and <code>gpg-agent</code>)</li>
+<li>Keybase</li>
+<li><a href="https://github.com/GPGTools/pinentry-mac">Pinentry for GPG on Mac</a> (which is
+a part of GPGTools)</li>
+</ul>
+
+<p>I installed all of these (except Keybase) with <a href="https://brew.sh">Homebrew</a>:</p>
+
+<pre><code class="language-console">$ brew install git gnupg pinentry-mac
+...
+</code></pre>
+
+<p>I installed Keybase from <a href="https://keybase.io/download">https://keybase.io/download</a>.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>I&rsquo;m going to leave setting Keybase up as an exercise to the reader. My process
+was a little convoluted:</p>
+
+<ol>
+<li>figuring out how to get my GPG key out of Keybase</li>
+<li>importing my Keybase key into <code>gpg</code></li>
+<li>configuring <code>git</code></li>
+<li>adding my key to GitHub</li>
+<li>figuring out I needed to use <code>gpg-agent</code></li>
+<li>realizing that <code>gpg-agent</code> expires passphrases</li>
+<li>finding <code>pinentry-mac</code></li>
+</ol>
+
+<p>So, I&rsquo;ve put together a bit of a shortcut. Let&rsquo;s get started&hellip;</p>
+
+<h3 id="getting-keybase-to-cough-up-my-key-pair">Getting Keybase to cough up my key pair</h3>
+
+<p>The first step&rsquo;s easy:</p>
+
+<pre><code class="language-console">$ keybase pgp export &gt; keybase-public.key
+</code></pre>
+
+<p>This gets my public key, but I need the secret key too. To do that,
+there&rsquo;s a couple options - Keybase lets you export the private key (after
+authenticating) from the web UI, but an easier commandline way is:</p>
+
+<pre><code class="language-console">$ keybase pgp export -s &gt; keybase-private.key
+</code></pre>
+
+<p>It&rsquo;ll prompt for the passphrase.</p>
+
+<p>Ok, now we have the key pair!</p>
+
+<h3 id="importing-the-key-pair-into-the-gpg-keychain">Importing the key pair into the GPG keychain</h3>
+
+<p>This is probably the most involved step,</p>
+
+<p>First the public:</p>
+
+<pre><code class="language-console">$ gpg --import keybase-public.key
+</code></pre>
+
+<p>Now private:</p>
+
+<pre><code class="language-console">$ gpg --allow-secret-key-import --import keybase-private.key
+</code></pre>
+
+<p>Ok, cool. If I type <code>gpg --list-secret-keys</code> now, I see my key:</p>
+
+<pre><code class="language-console">$ gpg --list-secret-keys
+/Users/hairyhenderson/.gnupg/secring.gpg
+-----------------------------
+sec   4096R/9AB1B536 2014-11-19
+uid                  keybase.io/dhenderson &lt;dhenderson@keybase.io&gt;
+ssb   2048R/5DCE5AFA 2014-11-19
+ssb   2048R/30CF03B1 2014-11-19
+</code></pre>
+
+<p>The one important bit to take away from that is the key ID - the bit after the <code>/</code>
+in the <code>sec</code> entry: <code>9AB1B536</code> in my case.</p>
+
+<p>In my case I only had one e-mail address associated with it - <code>dhenderson@keybase.io</code>.
+I don&rsquo;t have any access to that mail account, and I certainly never sign commits
+with that address. So I need to add my regular e-mail address to the key:</p>
+
+<pre><code class="language-console">$ gpg --edit &lt;key id&gt;
+gpg (GnuPG) 2.0.30; Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Secret key is available.
+
+pub  4096R/9AB1B536  created: 2014-11-19  expires: never       usage: SCEA
+                     trust: unknown       validity: unknown
+sub  2048R/5DCE5AFA  created: 2014-11-19  expires: 2022-11-17  usage: S   
+sub  2048R/30CF03B1  created: 2014-11-19  expires: 2022-11-17  usage: E   
+[unknown] (2)  keybase.io/dhenderson &lt;dhenderson@keybase.io&gt;
+
+gpg&gt;
+</code></pre>
+
+<p>At this point, enter <code>adduid</code> and it&rsquo;ll prompt for various information:</p>
+
+<pre><code class="language-console">gpg&gt; adduid
+Real name: Dave Henderson
+Email address: another@address.com
+Comment:
+You selected this USER-ID:
+    &quot;Dave Henderson &lt;another@address.com&gt;&quot;
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+</code></pre>
+
+<p>It&rsquo;ll prompt for the passphrase and then you&rsquo;re back at the <code>gpg&gt;</code> prompt.</p>
+
+<p>Now, one more change - not <em>strictly</em> necessary, but will avoid weird warnings
+later: set my own identity to ultimate trust. Use the <code>trust</code> command:</p>
+
+<pre><code class="language-console">gpg&gt; trust
+pub  4096R/9AB1B536  created: 2014-11-19  expires: never       usage: SCEA
+                     trust: unknown      validity: unknown
+sub  2048R/5DCE5AFA  created: 2014-11-19  expires: 2022-11-17  usage: S   
+sub  2048R/30CF03B1  created: 2014-11-19  expires: 2022-11-17  usage: E   
+[unknown] (1)  Dave Henderson &lt;another@address.com&gt;
+[unknown] (2)  keybase.io/dhenderson &lt;dhenderson@keybase.io&gt;
+
+Please decide how far you trust this user to correctly verify other users' keys
+(by looking at passports, checking fingerprints from different sources, etc.)
+
+  1 = I don't know or won't say
+  2 = I do NOT trust
+  3 = I trust marginally
+  4 = I trust fully
+  5 = I trust ultimately
+  m = back to the main menu
+
+Your decision? 5
+</code></pre>
+
+<p>Finish the session with the <code>save</code> command.</p>
+
+<p>Ok, last step here: update Keybase with the updated key:</p>
+
+<pre><code class="language-console">$ keybase pgp update
+▶ INFO Posting update for key 22600e46075b206041e8f730407ccdee9ab1b536.
+▶ INFO Update succeeded for key 22600e46075b206041e8f730407ccdee9ab1b536.
+</code></pre>
+
+<h3 id="configuring-git">Configuring Git</h3>
+
+<p>This part&rsquo;s pretty straightforward. I just want to tell Git which key to use
+by default:</p>
+
+<pre><code class="language-console">$ git config --global user.signingkey 9AB1B536
+</code></pre>
+
+<h3 id="configuring-github">Configuring GitHub</h3>
+
+<p>This part&rsquo;s <em>really</em> straightforward. All I needed to do is open
+<a href="https://github.com/settings/keys">https://github.com/settings/keys</a> and create a new key by pasting in the contents
+of my public key.</p>
+
+<h3 id="configuring-gpg-agent">Configuring <code>gpg-agent</code></h3>
+
+<p>Almost there! I had to create a new <code>~/.gnupg/gpg-agent.conf</code> file. The contents
+are:</p>
+
+<pre><code>use-standard-socket
+pinentry-program /usr/local/bin/pinentry-mac
+</code></pre>
+
+<p>Then in <code>~/.gnupg/gpg.conf</code>, I added a line that says:</p>
+
+<pre><code>use-agent
+</code></pre>
+
+<p>That&rsquo;s it! Ready to sign commits now!</p>
+
+<h2 id="signing-commits">Signing commits</h2>
+
+<p>And now, the fruit of our labours. I can just use the <code>-S</code> flag when I make a
+commit:</p>
+
+<pre><code class="language-console">$ git commit -S -m &quot;whoa, there's cryptographic proof this was written by me&quot;
+</code></pre>
+
+<p>Now, when I first looked at this I wondered if <code>-S</code> was a &ldquo;stronger&rdquo; version of
+<code>-s</code>, but it turns out they&rsquo;re completely unrelated. I&rsquo;ve been used to &ldquo;signing&rdquo;
+my commits already with the <code>git commit -s</code> flag, but this really only adds a
+<code>Signed-off-by</code> line, which usually just implies acceptance of a <a href="http://developercertificate.org/">DCO</a>.</p>
+
+<p>I guess I need to adjust my thinking about this, because - <code>-s</code> <em>really</em> means
+&ldquo;sign off&rdquo;, which is pretty obvious once you look at the long form: <code>--signoff</code>.</p>
+
+<p>On the other hand, <code>-S</code> (or <code>--gpg-sign</code>) adds a <em>cryptographic</em> signature to
+the commit. Cryptographically signing commits means something completely
+different: It gives some proof that the commit was written by the person who
+owns a certain GPG key.</p>
+
+<p>When this is combined with GitHub&rsquo;s signature verification support, you get
+fairly irrefutable proof that a commit was signed by the person who owns a given
+GitHub account.</p>
+
+<p>And then, we come full circle when we combine this with Keybase&rsquo;s various proof
+mechanisms, which can prove that the person who owns a certain twitter account,
+a certain website, and a certain reddit account is <em>also</em> the same person who
+owns that GitHub account.</p>
+
+<p>👋🔏</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hairyhenderson";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hairyhenderson";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="https://hairyhenderson.github.io/blog/public/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
+
