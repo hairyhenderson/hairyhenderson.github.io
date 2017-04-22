@@ -15,7 +15,7 @@ First, some super-useful sources:
 
 - [Diogo Mónica's blog posting from DockerCon EU 2015][diogo-blog-dct] (_DOCKER CONTENT TRUST GETS HARDWARE SIGNING_)
 - [docker/notary#779][notary-GH-779] (_Improve docs for typical CI usage with docker+notary_)
-- The [YubiKey PIV CLI tool v1.4.0 zip][piv-tool-dl]
+- The [YubiKey PIV CLI tool v1.4.3 zip][piv-tool-dl]
 - [docker/toolbox#461][toolbox-GH-461] (from here I gleaned that
   `/usr/local/docker/lib` is understood by `notary`)
 
@@ -32,9 +32,9 @@ and putting the `notary` binary in the path somewhere (like `~/bin` in my case).
 
 - First download the [PIV CLI tool zip][piv-tool-dl] and extract it somewhere
 ```console
-$ curl -OL https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip
+$ curl -OL https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.3-mac.zip
 ...
-$ unzip yubico-piv-tool-1.4.0-mac.zip
+$ unzip yubico-piv-tool-1.4.3-mac.zip
 ```
 
 - We only need the contents of `lib`, and it turns out it can simply be copied
@@ -67,21 +67,21 @@ Ok now we're ready to create a key:
 $ notary key list
 ROLE   GUN    KEY ID        LOCATION
 ------------------------------------------
-root         deadbeef....   file (/Users/myuser/.docker/trust/private)  
+root         deadbeef....   file (/Users/myuser/.notary/private)  
 root         deadbeef....   yubikey    
 ```
   - that second entry says it's in the yubikey.
 
-- Maybe a good idea to back up the root key now (to a _secure offline location!_), with `notary key backup`
+- Maybe a good idea to back up the root key now (to a _secure offline location!_), with `notary key export`
 ```console
-$ notary key backup /Volumes/SomeUSBStick/archivename.zip
+$ notary key export > /Volumes/SomeUSBStick/notary.key
 ...
 ```
-  - this will re-encrypt with a new passphrase into a zip file. Obviously we gotta keep that passphrase handy too!
+  - This will output the key into a text file, which you most likely will want to encrypt using PGP or a protected ZIP file. 
 
 - Last, we can delete the on-disk key. It's unnecessary since we'll use the YubiKey's copy.
 ```console
-$ rm ~/.docker/trust/private/root_keys/deadbeef....key
+$ rm ~/.notary/private/root_keys/deadbeef....key
 ```
 
 ## Signing on push
@@ -116,5 +116,6 @@ This is as far as I've gotten... Maybe more to come later!
 
 [diogo-blog-dct]: https://blog.docker.com/2015/11/docker-content-trust-yubikey/
 [notary-GH-779]: https://github.com/docker/notary/issues/779
-[piv-tool-dl]: https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip
+[piv-tool-dl]: https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.3-mac.zip
 [toolbox-GH-461]: https://github.com/docker/toolbox/issues/461
+
