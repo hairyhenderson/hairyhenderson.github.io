@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>interesting things</title>
-    <link>https://hairyhenderson.github.io/blog/public/categories/notes/index.xml</link>
-    <description>Recent content on interesting things</description>
+    <title>Notes on interesting things</title>
+    <link>https://hairyhenderson.github.io/blog/public/categories/notes/</link>
+    <description>Recent content in Notes on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Jun 2016 22:19:39 -0400</lastBuildDate>
+    
+	<atom:link href="https://hairyhenderson.github.io/blog/public/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Getting YubiKey working with Docker Content Trust on OS X</title>
@@ -14,130 +17,9 @@
       <pubDate>Thu, 30 Jun 2016 22:19:39 -0400</pubDate>
       
       <guid>https://hairyhenderson.github.io/blog/public/post/yubikey-dct/</guid>
-      <description>
-
-&lt;h1 id=&#34;getting-yubikey-working-with-docker-content-trust-on-os-x&#34;&gt;Getting YubiKey working with Docker Content Trust on OS X&lt;/h1&gt;
-
-&lt;p&gt;This wasn&amp;rsquo;t as straightforward as I would&amp;rsquo;ve liked, so I&amp;rsquo;m documenting this here.&lt;/p&gt;
-
-&lt;p&gt;First, some super-useful sources:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.docker.com/2015/11/docker-content-trust-yubikey/&#34;&gt;Diogo Mónica&amp;rsquo;s blog posting from DockerCon EU 2015&lt;/a&gt; (&lt;em&gt;DOCKER CONTENT TRUST GETS HARDWARE SIGNING&lt;/em&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/docker/notary/issues/779&#34;&gt;docker/notary#779&lt;/a&gt; (&lt;em&gt;Improve docs for typical CI usage with docker+notary&lt;/em&gt;)&lt;/li&gt;
-&lt;li&gt;The &lt;a href=&#34;https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip&#34;&gt;YubiKey PIV CLI tool v1.4.0 zip&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/docker/toolbox/issues/461&#34;&gt;docker/toolbox#461&lt;/a&gt; (from here I gleaned that
-&lt;code&gt;/usr/local/docker/lib&lt;/code&gt; is understood by &lt;code&gt;notary&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I only figured this out because the folks above did most of the work!&lt;/p&gt;
-
-&lt;h2 id=&#34;preparation&#34;&gt;Preparation&amp;hellip;&lt;/h2&gt;
-
-&lt;h3 id=&#34;install-notary&#34;&gt;Install notary&lt;/h3&gt;
-
-&lt;p&gt;Just a matter of grabbing the latest from &lt;a href=&#34;https://github.com/docker/notary/releases&#34;&gt;https://github.com/docker/notary/releases&lt;/a&gt;
-and putting the &lt;code&gt;notary&lt;/code&gt; binary in the path somewhere (like &lt;code&gt;~/bin&lt;/code&gt; in my case).&lt;/p&gt;
-
-&lt;h3 id=&#34;install-the-yubikey-piv-shared-libraries&#34;&gt;Install the YubiKey PIV shared libraries&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;First download the &lt;a href=&#34;https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip&#34;&gt;PIV CLI tool zip&lt;/a&gt; and extract it somewhere&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ curl -OL https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip
-...
-$ unzip yubico-piv-tool-1.4.0-mac.zip
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;We only need the contents of &lt;code&gt;lib&lt;/code&gt;, and it turns out it can simply be copied
-into &lt;code&gt;/usr/local/docker/lib&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ mkdir -p /usr/local/docker/lib
-$ cp -av lib/ /usr/local/docker/lib
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;That&amp;rsquo;s it - now make sure this worked:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ DOCKER_CONTENT_TRUST=1 docker -D pull alpine
-Using default tag: latest
-DEBU[0000] reading certificate directory: /Users/myuser/.docker/tls/notary.docker.io
-DEBU[0000] Initialized PKCS11 library /usr/local/docker/lib/libykcs11.dylib and started HSM session
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;The key is that &lt;code&gt;started HSM session&lt;/code&gt; bit&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;configuration&#34;&gt;Configuration&amp;hellip;&lt;/h2&gt;
-
-&lt;p&gt;Ok now we&amp;rsquo;re ready to create a key:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;notary key generate&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;give it a complex passphrase stored in a password manager (I like
-&lt;a href=&#34;https://1password.com&#34;&gt;1Password&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Verify that it&amp;rsquo;s there:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ notary key list
-ROLE   GUN    KEY ID        LOCATION
-------------------------------------------
-root         deadbeef....   file (/Users/myuser/.docker/trust/private)  
-root         deadbeef....   yubikey    
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;that second entry says it&amp;rsquo;s in the yubikey.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Maybe a good idea to back up the root key now (to a &lt;em&gt;secure offline location!&lt;/em&gt;), with &lt;code&gt;notary key backup&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ notary key backup /Volumes/SomeUSBStick/archivename.zip
-...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;this will re-encrypt with a new passphrase into a zip file. Obviously we gotta keep that passphrase handy too!&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Last, we can delete the on-disk key. It&amp;rsquo;s unnecessary since we&amp;rsquo;ll use the YubiKey&amp;rsquo;s copy.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ rm ~/.docker/trust/private/root_keys/deadbeef....key
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;signing-on-push&#34;&gt;Signing on push&lt;/h2&gt;
-
-&lt;p&gt;And now for the magic:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ export DOCKER_CONTENT_TRUST=1
-$ docker build -t hairyhenderson/dct-test:latest
-...
-$ docker push hairyhenderson/dct-test:latest
-The push refers to a repository [docker.io/hairyhenderson/dct-test]
-e520aba5adf5: Layer already exists
-917d421641b4: Layer already exists
-e9d17ff7ca16: Layer already exists
-63bcbfab7dc5: Layer already exists
-af21bd4b5bb1: Layer already exists
-4b0b3b9ff599: Layer already exists
-d1e800db26c7: Layer already exists
-42755cf4ee95: Layer already exists
-latest: digest: sha256:deadbeef25599d9a37bd452ba6918ac198693fe4b9f9822d0a4bf54735469f04 size: 1974
-Signing and pushing trust metadata
-Please touch the attached Yubikey to perform signing.
-Enter passphrase for new repository key with ID 7ff917d (docker.io/hairyhenderson/dct-test):
-Repeat passphrase for new repository key with ID 7ff917d (docker.io/hairyhenderson/dct-test):
-Please touch the attached Yubikey to perform signing.
-Finished initializing &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;
-Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is as far as I&amp;rsquo;ve gotten&amp;hellip; Maybe more to come later!&lt;/p&gt;
-</description>
+      <description>Getting YubiKey working with Docker Content Trust on OS X This wasn&amp;rsquo;t as straightforward as I would&amp;rsquo;ve liked, so I&amp;rsquo;m documenting this here.
+First, some super-useful sources:
+ Diogo Mónica&amp;rsquo;s blog posting from DockerCon EU 2015 (DOCKER CONTENT TRUST GETS HARDWARE SIGNING) docker/notary#779 (Improve docs for typical CI usage with docker+notary) The YubiKey PIV CLI tool v1.4.3 zip docker/toolbox#461 (from here I gleaned that /usr/local/docker/lib is understood by notary)  I only figured this out because the folks above did most of the work!</description>
     </item>
     
     <item>
@@ -146,59 +28,12 @@ Successfully signed &amp;quot;docker.io/hairyhenderson/dct-test&amp;quot;:latest
       <pubDate>Sat, 12 Dec 2015 12:38:40 -0500</pubDate>
       
       <guid>https://hairyhenderson.github.io/blog/public/post/using_hugo/</guid>
-      <description>
-
-&lt;p&gt;Hugo&amp;rsquo;s pretty simple to use, but I use it so sporadically I figured I should jot down how I use it&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; All the following commands assume I&amp;rsquo;m in the &lt;code&gt;/blog&lt;/code&gt; subdirectory of the
-&lt;a href=&#34;https://github.com/hairyhenderson/hairyhenderson.github.io&#34;&gt;repo&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-
-&lt;p&gt;I installed it with Homebrew:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ brew install hugo
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;so to upgrade it I just &lt;code&gt;brew update &amp;amp;&amp;amp; brew upgrade&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;previewing&#34;&gt;Previewing&lt;/h2&gt;
-
-&lt;p&gt;To get &lt;code&gt;hugo&lt;/code&gt; to render on-the-fly:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo server --watch --buildDrafts
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;writing-new-articles&#34;&gt;Writing new articles&lt;/h2&gt;
-
-&lt;p&gt;To start a new post:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo new post/title_of_post.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or if it&amp;rsquo;s a static page (about/etc)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo new title_of_page.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Edit the page:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ atom content/&amp;lt;path to .md file&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Update the &lt;code&gt;categories&lt;/code&gt; and &lt;code&gt;title&lt;/code&gt; fields, and set &lt;code&gt;draft = true&lt;/code&gt; in the front matter if necessary.&lt;/p&gt;
-
-&lt;h2 id=&#34;publishing&#34;&gt;Publishing&lt;/h2&gt;
-
-&lt;p&gt;Regenerate the site&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ hugo
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then &lt;code&gt;git add&lt;/code&gt;/&lt;code&gt;git commit&lt;/code&gt;/&lt;code&gt;git push&lt;/code&gt; to taste.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;fin&lt;/em&gt;&lt;/p&gt;
-</description>
+      <description>Hugo&amp;rsquo;s pretty simple to use, but I use it so sporadically I figured I should jot down how I use it&amp;hellip;
+Note: All the following commands assume I&amp;rsquo;m in the /blog subdirectory of the repo.
+Installation I installed it with Homebrew:
+$ brew install hugo  so to upgrade it I just brew update &amp;amp;&amp;amp; brew upgrade.
+Previewing To get hugo to render on-the-fly:
+$ hugo server --watch --buildDrafts  Writing new articles To start a new post:</description>
     </item>
     
   </channel>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on interesting things</title>
+    <link>https://hairyhenderson.github.io/blog/public/categories/</link>
+    <description>Recent content in Categories on interesting things</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://hairyhenderson.github.io/blog/public/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Crypto</title>
+      <link>https://hairyhenderson.github.io/blog/public/categories/crypto/</link>
+      <pubDate>Thu, 06 Oct 2016 22:45:49 -0400</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/categories/crypto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://hairyhenderson.github.io/blog/public/categories/docker/</link>
+      <pubDate>Thu, 30 Jun 2016 22:19:39 -0400</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Electronics</title>
+      <link>https://hairyhenderson.github.io/blog/public/categories/electronics/</link>
+      <pubDate>Sat, 16 Apr 2016 10:33:41 -0400</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/categories/electronics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>https://hairyhenderson.github.io/blog/public/categories/github/</link>
+      <pubDate>Thu, 06 Oct 2016 22:45:49 -0400</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/categories/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Iot</title>
+      <link>https://hairyhenderson.github.io/blog/public/categories/iot/</link>
+      <pubDate>Sat, 16 Apr 2016 10:33:41 -0400</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/categories/iot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Notes</title>
+      <link>https://hairyhenderson.github.io/blog/public/categories/notes/</link>
+      <pubDate>Thu, 30 Jun 2016 22:19:39 -0400</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/categories/notes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sites</title>
+      <link>https://hairyhenderson.github.io/blog/public/categories/sites/</link>
+      <pubDate>Sun, 13 Dec 2015 13:42:50 -0500</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/categories/sites/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>https://hairyhenderson.github.io/blog/public/categories/tools/</link>
+      <pubDate>Sat, 12 Dec 2015 13:21:28 -0500</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/categories/tools/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

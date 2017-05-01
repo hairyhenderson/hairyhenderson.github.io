@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>interesting things</title>
-    <link>https://hairyhenderson.github.io/blog/public/categories/electronics/index.xml</link>
-    <description>Recent content on interesting things</description>
+    <title>Electronics on interesting things</title>
+    <link>https://hairyhenderson.github.io/blog/public/categories/electronics/</link>
+    <description>Recent content in Electronics on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/electronics/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Apr 2016 10:33:41 -0400</lastBuildDate>
+    
+	<atom:link href="https://hairyhenderson.github.io/blog/public/categories/electronics/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Wii Balance Board Fitbit logger - Part 1</title>
@@ -14,47 +17,9 @@
       <pubDate>Sat, 16 Apr 2016 10:33:41 -0400</pubDate>
       
       <guid>https://hairyhenderson.github.io/blog/public/post/wii-fitbit-logger-pt1/</guid>
-      <description>
-
-&lt;p&gt;There was a &lt;a href=&#34;https://blog.adafruit.com/2016/04/15/weight-tracking-with-a-humorous-text-messaging-scale-pi3-piday-raspberrypi-raspberry_pi/&#34;&gt;pretty interesting post&lt;/a&gt;
-that I recently came across - basically a link to &lt;a href=&#34;https://github.com/InitialState/smart-scale/wiki&#34;&gt;&lt;code&gt;InitialState/smart-scale&lt;/code&gt; on GitHub &lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The basic idea is you take a Wii Balance Board (the one that came with Wii Fit),
-and hook it up via Bluetooth to a Raspberry Pi 3 (or any other computer with
-Bluetooth).&lt;/p&gt;
-
-&lt;p&gt;When I was reading the post, I tapped my wrist and realized my Fitbit was out of
-battery power and I&amp;rsquo;d have to go charge it soon. This got me thinking&amp;hellip;
-What if I could use my Wii Balance Board to send weight updates to Fitbit
-through their API?&lt;/p&gt;
-
-&lt;h3 id=&#34;some-gaps&#34;&gt;Some gaps&amp;hellip;&lt;/h3&gt;
-
-&lt;p&gt;So there&amp;rsquo;s a few things I&amp;rsquo;ll need to figure out:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;What language do I want to write all this in?
-
-&lt;ul&gt;
-&lt;li&gt;The example&amp;rsquo;s in Python, but I&amp;rsquo;d prefer to use Go, because&amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;How to authenticate with the Fitbit API?
-
-&lt;ul&gt;
-&lt;li&gt;They use OAuth2 (OAuth1 was deprecated and is no longer supported), and it
-seems I need to use the &lt;a href=&#34;https://dev.fitbit.com/docs/oauth2/#implicit-grant-flow&#34;&gt;&amp;ldquo;Implicit Grant&amp;rdquo; flow&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;I have zero knowledge of Bluetooth, so I&amp;rsquo;m sure there&amp;rsquo;ll be some stumbling
-blocks along the way&amp;hellip;
-
-&lt;ul&gt;
-&lt;li&gt;Can I keep my Raspberry Pi in the basement but have the balance board on the
-top floor?&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I&amp;rsquo;m going to get started (vaguely), and will report back in part 2! 👋&lt;/p&gt;
-</description>
+      <description>There was a pretty interesting post that I recently came across - basically a link to InitialState/smart-scale on GitHub .
+The basic idea is you take a Wii Balance Board (the one that came with Wii Fit), and hook it up via Bluetooth to a Raspberry Pi 3 (or any other computer with Bluetooth).
+When I was reading the post, I tapped my wrist and realized my Fitbit was out of battery power and I&amp;rsquo;d have to go charge it soon.</description>
     </item>
     
     <item>
@@ -63,22 +28,9 @@ top floor?&lt;/li&gt;
       <pubDate>Sun, 13 Dec 2015 13:42:50 -0500</pubDate>
       
       <guid>https://hairyhenderson.github.io/blog/public/post/wiihacks/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;d be cool to use the Wiimote and/or nunchuck as an input device to control
-I dunno, a drone or something?&lt;/p&gt;
-
-&lt;p&gt;Haven&amp;rsquo;t gotten very far, but here&amp;rsquo;s some links for posterity:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://wiibrew.org&#34;&gt;wiibrew&lt;/a&gt; - lots of in-depth info, like docs for the various
-protocols and data formats, esp. around the &amp;lsquo;mote and nunchuck&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://hackaday.com/category/nintendo-wii-hacks/&#34;&gt;hackaday category&lt;/a&gt; - relevant
-articles&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://gobot.io/documentation/drivers/wiimote-nunchuk/&#34;&gt;gobot lib&lt;/a&gt; - i2c for
-the nunchuck&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.adafruit.com/product/345&#34;&gt;nunchucky&lt;/a&gt; from Adafruit - breakout for
-nunchuck and other devices (like the classic controller) to use them directly&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>It&amp;rsquo;d be cool to use the Wiimote and/or nunchuck as an input device to control I dunno, a drone or something?
+Haven&amp;rsquo;t gotten very far, but here&amp;rsquo;s some links for posterity:
+ wiibrew - lots of in-depth info, like docs for the various protocols and data formats, esp. around the &amp;lsquo;mote and nunchuck hackaday category - relevant articles gobot lib - i2c for the nunchuck nunchucky from Adafruit - breakout for nunchuck and other devices (like the classic controller) to use them directly  </description>
     </item>
     
   </channel>

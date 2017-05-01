@@ -55,12 +55,13 @@
     <ul class="sidebar-nav">
       <li class="sidebar-nav-item">
       <a href="https://github.com/hairyhenderson"><i class="fa fa-github-square fa-3x"></i></a>
-      <a href="https://bitbucket.org/hairyhenderson"><i class="fa fa-bitbucket-square fa-3x"></i></a>
+      
       
       <a href="https://ca.linkedin.com/in/hairyhenderson"><i class="fa fa-linkedin-square fa-3x"></i></a>
       
       <a href="https://www.facebook.com/dave.a.henderson"><i class="fa fa-facebook-square fa-3x"></i></a>
       <a href="https://twitter.com/hairyhenderson"><i class="fa fa-twitter-square fa-3x"></i></a>
+      <a href="https://keybase.io/dhenderson"><i class="fa fa-lock fa-3x"></i></a>
       
       
       </li>
@@ -68,7 +69,7 @@
 
     
 
-    <p>Copyright &copy; 2016 <a href="https://hairyhenderson.github.io/blog/public/license/">License</a><br/>
+    <p>Copyright &copy; 2017 <a href="https://hairyhenderson.github.io/blog/public/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
   </div>
 </div>
@@ -93,7 +94,7 @@
 <ul>
 <li><a href="https://blog.docker.com/2015/11/docker-content-trust-yubikey/">Diogo Mónica&rsquo;s blog posting from DockerCon EU 2015</a> (<em>DOCKER CONTENT TRUST GETS HARDWARE SIGNING</em>)</li>
 <li><a href="https://github.com/docker/notary/issues/779">docker/notary#779</a> (<em>Improve docs for typical CI usage with docker+notary</em>)</li>
-<li>The <a href="https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip">YubiKey PIV CLI tool v1.4.0 zip</a></li>
+<li>The <a href="https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.3-mac.zip">YubiKey PIV CLI tool v1.4.3 zip</a></li>
 <li><a href="https://github.com/docker/toolbox/issues/461">docker/toolbox#461</a> (from here I gleaned that
 <code>/usr/local/docker/lib</code> is understood by <code>notary</code>)</li>
 </ul>
@@ -110,11 +111,11 @@ and putting the <code>notary</code> binary in the path somewhere (like <code>~/b
 <h3 id="install-the-yubikey-piv-shared-libraries">Install the YubiKey PIV shared libraries</h3>
 
 <ul>
-<li><p>First download the <a href="https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip">PIV CLI tool zip</a> and extract it somewhere</p>
+<li><p>First download the <a href="https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.3-mac.zip">PIV CLI tool zip</a> and extract it somewhere</p>
 
-<pre><code class="language-console">$ curl -OL https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.0-mac.zip
+<pre><code class="language-console">$ curl -OL https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.3-mac.zip
 ...
-$ unzip yubico-piv-tool-1.4.0-mac.zip
+$ unzip yubico-piv-tool-1.4.3-mac.zip
 </code></pre></li>
 
 <li><p>We only need the contents of <code>lib</code>, and it turns out it can simply be copied
@@ -153,7 +154,7 @@ DEBU[0000] Initialized PKCS11 library /usr/local/docker/lib/libykcs11.dylib and 
 <pre><code class="language-console">$ notary key list
 ROLE   GUN    KEY ID        LOCATION
 ------------------------------------------
-root         deadbeef....   file (/Users/myuser/.docker/trust/private)  
+root         deadbeef....   file (/Users/myuser/.notary/private)  
 root         deadbeef....   yubikey    
 </code></pre>
 
@@ -161,19 +162,19 @@ root         deadbeef....   yubikey
 <li>that second entry says it&rsquo;s in the yubikey.</li>
 </ul></li>
 
-<li><p>Maybe a good idea to back up the root key now (to a <em>secure offline location!</em>), with <code>notary key backup</code></p>
+<li><p>Maybe a good idea to back up the root key now (to a <em>secure offline location!</em>), with <code>notary key export</code></p>
 
-<pre><code class="language-console">$ notary key backup /Volumes/SomeUSBStick/archivename.zip
+<pre><code class="language-console">$ notary key export &gt; /Volumes/SomeUSBStick/notary.key
 ...
 </code></pre>
 
 <ul>
-<li>this will re-encrypt with a new passphrase into a zip file. Obviously we gotta keep that passphrase handy too!</li>
+<li>This will output the key into a text file, which you most likely will want to encrypt using PGP or a protected ZIP file.</li>
 </ul></li>
 
 <li><p>Last, we can delete the on-disk key. It&rsquo;s unnecessary since we&rsquo;ll use the YubiKey&rsquo;s copy.</p>
 
-<pre><code class="language-console">$ rm ~/.docker/trust/private/root_keys/deadbeef....key
+<pre><code class="language-console">$ rm ~/.notary/private/root_keys/deadbeef....key
 </code></pre></li>
 </ul>
 

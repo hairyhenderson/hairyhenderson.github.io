@@ -14,7 +14,8 @@ canonifyurls = true
     category = "categories"
 
 [params]
-    gravatarHash = "3a457dd69d8817d6a61c7dc07b348bfa"
+    # {{ md5 "your@email.com" }}
+    gravatarhash = "3a457dd69d8817d6a61c7dc07b348bfa"
     # googleAnalytics = "UA-82637990-2"
     tagline = "interesting things"
 
@@ -23,7 +24,7 @@ canonifyurls = true
     highlight = "tomorrow-night-eighties"
 
     github = "https://github.com/hairyhenderson"
-    bitbucket = "https://bitbucket.org/hairyhenderson"
-    facebook = "https://www.facebook.com/dave.a.henderson"
-    linkedin = "https://ca.linkedin.com/in/hairyhenderson"
     twitter = "https://twitter.com/hairyhenderson"
+    keybase = "https://keybase.io/dhenderson"
+    linkedin = "https://ca.linkedin.com/in/hairyhenderson"
+    facebook = "https://www.facebook.com/dave.a.henderson"

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>interesting things</title>
-    <link>https://hairyhenderson.github.io/blog/public/categories/tools/index.xml</link>
-    <description>Recent content on interesting things</description>
+    <title>Tools on interesting things</title>
+    <link>https://hairyhenderson.github.io/blog/public/categories/tools/</link>
+    <description>Recent content in Tools on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://hairyhenderson.github.io/blog/public/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Dec 2015 13:21:28 -0500</lastBuildDate>
+    
+	<atom:link href="https://hairyhenderson.github.io/blog/public/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>asciinema</title>
@@ -14,50 +17,12 @@
       <pubDate>Sat, 12 Dec 2015 13:21:28 -0500</pubDate>
       
       <guid>https://hairyhenderson.github.io/blog/public/post/asciinema/</guid>
-      <description>
-
-&lt;p&gt;Ran into this a while back, but I keep forgetting about it:  &lt;a href=&#34;https://asciinema.org&#34;&gt;https://asciinema.org&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;using&#34;&gt;Using&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ asciinema rec
-...
-$ exit
-...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;It&amp;rsquo;ll start a new shell and record all the things (including timing and mistakes!), then upload it to their site for serving.&lt;/p&gt;
-
-&lt;h2 id=&#34;modifying&#34;&gt;Modifying&lt;/h2&gt;
-
-&lt;p&gt;Download it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ curl -sL https://asciinema.org/a/abcd1234.json &amp;gt; rec.json
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Edit the file&amp;hellip;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Upload it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ asciinema upload rec.json
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;other-useful-options&#34;&gt;Other useful options&lt;/h2&gt;
-
-&lt;p&gt;Record something that isn&amp;rsquo;t a shell:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ asciinema rec -c node
-~ Asciicast recording started.
-~ Hit Ctrl-D or type &amp;quot;exit&amp;quot; to finish.
-&amp;gt; console.log(&#39;hello world&#39;)
-hello world
-undefined
-&amp;gt; ~ Asciicast recording finished.
-~ Press &amp;lt;Enter&amp;gt; to upload, &amp;lt;Ctrl-C&amp;gt; to cancel.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;fin&lt;/em&gt;&lt;/p&gt;
-</description>
+      <description>Ran into this a while back, but I keep forgetting about it: https://asciinema.org
+Using $ asciinema rec ... $ exit ...  It&amp;rsquo;ll start a new shell and record all the things (including timing and mistakes!), then upload it to their site for serving.
+Modifying Download it:
+$ curl -sL https://asciinema.org/a/abcd1234.json &amp;gt; rec.json  Edit the file&amp;hellip;
+Upload it:
+$ asciinema upload rec.json  Other useful options Record something that isn&amp;rsquo;t a shell:</description>
     </item>
     
   </channel>
