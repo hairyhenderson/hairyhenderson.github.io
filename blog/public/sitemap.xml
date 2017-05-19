@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hairyhenderson.github.io/blog/public/post/about_gomplate/</loc>
+    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://hairyhenderson.github.io/blog/public/post/verified_github_commits_with_keybase/</loc>
     <lastmod>2016-10-06T22:45:49-04:00</lastmod>
   </url>
@@ -54,7 +59,7 @@
   
   <url>
     <loc>https://hairyhenderson.github.io/blog/public/categories/docker/</loc>
-    <lastmod>2016-06-30T22:19:39-04:00</lastmod>
+    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -71,6 +76,18 @@
   </url>
   
   <url>
+    <loc>https://hairyhenderson.github.io/blog/public/categories/golang/</loc>
+    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hairyhenderson.github.io/blog/public/categories/gomplate/</loc>
+    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hairyhenderson.github.io/blog/public/categories/iot/</loc>
     <lastmod>2016-04-16T10:33:41-04:00</lastmod>
     <priority>0</priority>
@@ -83,8 +100,14 @@
   </url>
   
   <url>
+    <loc>https://hairyhenderson.github.io/blog/public/categories/open-source/</loc>
+    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hairyhenderson.github.io/blog/public/post/</loc>
-    <lastmod>2016-10-06T22:45:49-04:00</lastmod>
+    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -96,13 +119,13 @@
   
   <url>
     <loc>https://hairyhenderson.github.io/blog/public/categories/tools/</loc>
-    <lastmod>2015-12-12T13:21:28-05:00</lastmod>
+    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hairyhenderson.github.io/blog/public/</loc>
-    <lastmod>2016-10-06T22:45:49-04:00</lastmod>
+    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
     <priority>0</priority>
   </url>
   
