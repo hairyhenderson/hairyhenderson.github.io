@@ -196,7 +196,7 @@ Broadly, though, I'm hoping to do _more_ with `gomplate`:
 - more support for cloud providers (that aren't AWS)!
 
 Finally, if you've made it this far without getting bored, thank you! And if you
-haven't yet, go ahead and throw a ⭐️ at https://github.com/hairyhenderson/gomplate!
+haven't yet, go ahead and throw a ⭐️ at [`gomplate`](https://github.com/hairyhenderson/gomplate)!
 
 <iframe src="https://ghbtns.com/github-btn.html?user=hairyhenderson&repo=gomplate&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
 
