@@ -113,7 +113,7 @@ Obviously it _wasn't_ complete...
 
 ### Vault support
 
-One nifty feature introduced in v1.2.0 is support for using [HashiCorp's Vault][]
+One nifty feature introduced in v1.2.0 is support for using HashiCorp's [Vault][]
 as a datasource. This means that `gomplate` can be used to safely inject secrets
 into config files, among other things.
 
