@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Whipping tablecloths with Docker for AWS, CloudFormation, and Terraform &middot; Dave Henderson</title>
+
+  
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/poole.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/poole-overrides.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde-overrides.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/hyde-x.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/highlight/tomorrow-night-eighties.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://hairyhenderson.github.io/blog/public/css/custom.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://hairyhenderson.github.io/blog/public/touch-icon-144-precomposed.png">
+  <link href="https://hairyhenderson.github.io/blog/public/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="How to migrate Docker for AWS from a managed VPC to a pre-existing VPC">
+  <meta name="keywords" content="docker,aws,novpc">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="https://www.gravatar.com/avatar/3a457dd69d8817d6a61c7dc07b348bfa?s=200"
+             alt="gravatar" title="Dave Henderson">
+      
+      <h1>Dave Henderson</h1>
+      <p class="lead">interesting things</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/blog/public/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://hairyhenderson.github.io/blog/public/about/">about</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/hairyhenderson"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://ca.linkedin.com/in/hairyhenderson"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      <a href="https://www.facebook.com/dave.a.henderson"><i class="fa fa-facebook-square fa-3x"></i></a>
+      <a href="https://twitter.com/hairyhenderson"><i class="fa fa-twitter-square fa-3x"></i></a>
+      <a href="https://keybase.io/dhenderson"><i class="fa fa-lock fa-3x"></i></a>
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2018 <a href="https://hairyhenderson.github.io/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Whipping tablecloths with Docker for AWS, CloudFormation, and Terraform</h1>
+    <span class="post-date">Feb 7, 2018 &middot; 7 minute read &middot; <a href="https://hairyhenderson.github.io/blog/public/post/migrating-d4aws-to-novpc/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="https://hairyhenderson.github.io/blog/public/categories/docker">docker</a><a class="label" href="https://hairyhenderson.github.io/blog/public/categories/aws">aws</a>
+    </span>
+    
+
+<p>I&rsquo;ve been using <a href="https://docker.com/docker-aws">Docker for AWS</a> (D4AWS) ever since I was accepted into the
+public beta, and have been running it in production for a while. One of the
+best features of D4AWS is that you can deploy it without needing any
+client-side tooling, due to its use of AWS <a href="https://aws.amazon.com/cloudformation">CloudFormation</a> <em>(CFN)</em>.</p>
+
+<p>This simplicity can also be a problem, since CloudFormation can be quite
+inflexible. In the early days, if you wanted to add a D4AWS stack to an
+existing VPC, for example, you were out of luck. Luckily, Docker soon added
+a second <a href="https://docs.docker.com/docker-for-aws/#deployment-options">CloudFormation template</a> that you can use, given
+you have an existing VPC, 3 subnets, and appropriate route tables.</p>
+
+<p>Personally, I prefer using <a href="https://terraform.io">Terraform</a> to provision and manage infrastructure,
+and my D4AWS stacks are no exception - I use the <a href="https://terraform.io/docs/providers/aws/r/cloudformation_stack.html"><code>aws_cloudformation_stack</code></a>
+resource for this. And in the cases where I&rsquo;ve added D4AWS to an existing VPC,
+it&rsquo;s easy with Terraform to plug the right values into the right places.</p>
+
+<p>This all means you have a <em>choice</em> when deploying Docker for AWS: do you want
+the whole infrastructure created and managed for you, with no effort? Or will
+you choose the more complex route of provisioning your own networking, for more
+flexibility down the road?</p>
+
+<p>I&rsquo;ve learned the importance of <em>making the right choice</em> the hard way, and now
+I&rsquo;m faced with the situation that I need to move the VPC (and subnets) out from
+CloudFormation&rsquo;s control, and into (in my case) Terraform&rsquo;s.</p>
+
+<h2 id="the-tablecloth-trick">The tablecloth trick</h2>
+
+<p>The key here is that I need to make this migration <em>without downtime</em>. Simply
+tearing down one stack and bringing up another would be simple, but it would
+also be a <em>real hassle</em>.</p>
+
+<p>Fortunately, a number of features of CloudFormation and Terraform can help me
+perform this magic trick.</p>
+
+<h3 id="setting-the-table">Setting the table</h3>
+
+<p>The goal here is to migrate between the two CFN templates, so let&rsquo;s start by
+downloading both of them:</p>
+
+<pre><code class="language-console">$ curl -sSLO https://editions-us-east-1.s3.amazonaws.com/aws/stable/Docker.tmpl
+$ curl -sSLO https://editions-us-east-1.s3.amazonaws.com/aws/stable/Docker-no-vpc.tmpl
+$ ls -1sh *.tmpl
+ 92K Docker-no-vpc.tmpl
+108K Docker.tmpl
+</code></pre>
+
+<p>We can see right away that there&rsquo;s about 16KB of difference between the two. Makes sense - the <code>-no-vpc</code> variant is missing a number of resources that are created by the other one.</p>
+
+<p>If you <code>diff</code> them, these are the main differences:</p>
+
+<ol>
+<li><code>Docker-no-vpc.tmpl</code> adds 5 new <em>Parameters</em>: <code>Vpc</code>, <code>VpcCidr</code>, and <code>PubSubnetAz1</code> through <code>3</code></li>
+<li><code>Docker.tmpl</code> has an <em>Output</em> named <code>VPCID</code></li>
+<li><code>Docker.tmpl</code> includes a number of resources:
+
+<ul>
+<li><code>AttachGateway</code></li>
+<li><code>Vpc</code></li>
+<li><code>PubSubnetAz1</code> (through <code>3</code>)</li>
+<li><code>InternetGateway</code></li>
+<li><code>PubSubnet1RouteTableAssociation</code> (through <code>3</code>)</li>
+<li><code>PublicRouteViaIgw</code></li>
+<li><code>RouteViaIgw</code></li>
+</ul></li>
+</ol>
+
+<p>There is also a Lambda and some related resources which we won&rsquo;t need - it&rsquo;s
+used for getting information about availability zones at deploy time.</p>
+
+<p>The plan is to liberate 11 resources from the <code>Docker.tmpl</code> stack, and bring
+them into Terraform&rsquo;s control:</p>
+
+<ol>
+<li>first we&rsquo;ll use CloudFormation&rsquo;s <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html"><code>DeletionPolicy</code></a> resource attribute to
+retain deleted resources</li>
+<li>then we&rsquo;ll use Terraform&rsquo;s <a href="https://www.terraform.io/docs/import/index.html">import</a> functionality to bring
+those into our control</li>
+</ol>
+
+<p>When we&rsquo;re done, we&rsquo;ll end up having morphed from <code>Docker.tmpl</code> to <code>Docker-no-vpc.tmpl</code>.</p>
+
+<h3 id="first-course">First course</h3>
+
+<p>The first step is to add a <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html"><code>DeletionPolicy</code></a> entry to each of the network
+resources we&rsquo;ll be moving.</p>
+
+<p>For each of the resources that <code>Docker-no-vpc.tmpl</code> isn&rsquo;t going to be
+managing, we need to add a <code>&quot;DeletionPolicy&quot;: &quot;Retain&quot;</code> entry.</p>
+
+<p>I&rsquo;ve done the changes, and the diff is:</p>
+
+<script src="//gist.github.com/hairyhenderson/0676eb235c8ecf09d548ba7d6341ca84.js?file=deletion_policies.diff"></script>
+
+<p>At this point, it&rsquo;s important to actually apply these changes. Since we&rsquo;re using
+Terraform, this is as easy as:</p>
+
+<pre><code class="language-console">$ terraform apply
+...
+Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+...
+</code></pre>
+
+<h3 id="second-course">Second course</h3>
+
+<p>Now the <em>fun</em> part - importing resources into the Terraform state and configuration.
+For now (as of v0.11.3) Terraform doesn&rsquo;t support generating configuration on
+<code>import</code>, so that part must be done first, and by hand.</p>
+
+<p>We&rsquo;ll need to create 10 Terraform resources:</p>
+
+<ul>
+<li><code>aws_vpc</code></li>
+<li><code>aws_internet_gateway</code></li>
+<li><code>aws_subnet</code> (times <code>3</code>)</li>
+<li><code>aws_route_table</code></li>
+<li><code>aws_route_table_association</code> (times <code>3</code>)</li>
+<li><code>aws_route</code></li>
+</ul>
+
+<p>The new Terraform resources look roughly like this:</p>
+
+<script src="//gist.github.com/hairyhenderson/0676eb235c8ecf09d548ba7d6341ca84.js?file=new_resources.tf"></script>
+
+<p>A few details:</p>
+
+<ul>
+<li><code>AWS::EC2::VPCGatewayAttachment</code> resources are only implicitly modeled by
+Terraform, so we won&rsquo;t be explicitly creating a replacement for <code>AttachGateway</code>.</li>
+<li>the value that <code>AWS::StackName</code> resolves to is put in a variable named
+<code>stack_name</code></li>
+<li>some additional variables <code>VpcCidr</code>, <code>PubSubnetCidrs</code>, and <code>Azs</code> help reduce
+hard-coding a bit</li>
+<li>note that the <code>aws_route_table</code> is named <code>RouteViaIgw</code>, as well as the <code>aws_route</code>,
+and the <code>aws_route_table_association</code>s - this is due to how Terraform will import these
+
+<ul>
+<li>also note that the names have no correspondence to the subnets they map to - the names
+will have to be tweaked after running <code>terraform import</code> until the <code>terraform plan</code> is clean</li>
+</ul></li>
+</ul>
+
+<h4 id="finding-resource-ids">Finding resource IDs</h4>
+
+<p>Before we can import the AWS resources into Terraform, we need to find their IDs.
+It&rsquo;s fairly straightforward to do this through the AWS console UI, but in my
+opinion it&rsquo;s faster to use the AWS CLI:</p>
+
+<pre><code class="language-console">$ aws ec2 describe-vpcs --output text --filters 'Name=tag:Name,Values=&quot;metrics-dee-stack-VPC&quot;' --query Vpcs[].VpcId
+vpc-12348765
+$ aws ec2 describe-internet-gateways --output text --filters 'Name=tag:Name,Values=&quot;metrics-dee-stack-IGW&quot;' --query InternetGateways[].InternetGatewayId
+igw-18273645
+$ aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values=&quot;metrics-dee-stack-Subnet1&quot;' --query Subnets[].SubnetId
+subnet-87654321
+$ aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values=&quot;metrics-dee-stack-Subnet2&quot;' --query Subnets[].SubnetId
+subnet-87654322
+$ aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values=&quot;metrics-dee-stack-Subnet3&quot;' --query Subnets[].SubnetId
+subnet-87654323
+$ aws --profile developer --region us-east-1 ec2 describe-route-tables --output text --filters 'Name=tag:Name,Values=&quot;metrics-dee-stack-RT&quot;' --query RouteTables[].RouteTableId
+rtb-12344321
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li><code>Route</code>s and <code>RouteTableAssociation</code>s aren&rsquo;t <em>real</em> resource type in the AWS API -
+they&rsquo;re properties of <code>RouteTable</code>, so we don&rsquo;t need to find IDs for those.</li>
+</ul>
+
+<h4 id="importing-resources">Importing resources</h4>
+
+<p>Now the fun starts. Starting with the VPC, we need to import each resource
+into the terraform state, using the IDs discovered above:</p>
+
+<pre><code class="language-console">$ terraform import aws_vpc.Vpc vpc-12348765
+...
+$ terraform import aws_internet_gateway.InternetGateway igw-18273645
+...
+$ terraform import aws_subnet.PubSubnetAz1 subnet-87654321
+...
+$ terraform import aws_subnet.PubSubnetAz2 subnet-87654322
+...
+$ terraform import aws_subnet.PubSubnetAz3 subnet-87654323
+...
+$ terraform import aws_route_table.RouteViaIgw rtb-12344321
+...
+</code></pre>
+
+<p>At this point, if you run <code>terraform plan</code>, the command should return with:</p>
+
+<pre><code>No changes. Infrastructure is up-to-date.
+</code></pre>
+
+<h3 id="removing-the-tablecloth-without-disturbing-the-dishes">Removing the tablecloth without disturbing the dishes&hellip;</h3>
+
+<p>Right now we&rsquo;re in a bit of an odd state - both Terraform and CloudFormation
+think they&rsquo;re managing the same resources. The next step is to remove them from
+the CloudFormation template.</p>
+
+<h4 id="altering-the-cfn-template">Altering the CFN template</h4>
+
+<p>At this point we can start morphing <code>Docker.tmpl</code> to look more like
+<code>Docker-no-vpc.tmpl</code>.</p>
+
+<p>First off, we can simply delete the affected resources from <code>Docker.tmpl</code>. We&rsquo;ll
+also need to delete the <code>VPCID</code> output, as well as add in the missing Parameters.</p>
+
+<p>The easiest way to do this is simply to diff the two files (I like using <code>diff -u</code>),
+and copy/paste the relevant pieces.</p>
+
+<p>The diff should look something like this:</p>
+
+<script src="//gist.github.com/hairyhenderson/0676eb235c8ecf09d548ba7d6341ca84.js?file=removed_resources.diff"></script>
+
+<p>Note that this isn&rsquo;t <em>quite</em> the same as <code>Docker-no-vpc.tmpl</code> yet. A few unnecessary
+resources are still hanging around (Lambda-related). We&rsquo;ll clean them up later.</p>
+
+<h4 id="passing-in-the-parameters">Passing in the parameters</h4>
+
+<p>The Terraform configuration now needs to be altered to pass in the appropriate IDs
+as parameters. The <code>aws_cloudformation_stack</code> resources should look like this:</p>
+
+<pre><code class="language-hcl">resource &quot;aws_cloudformation_stack&quot; &quot;docker4aws&quot; {
+  template_body = &quot;${file(&quot;Docker.tmpl&quot;)}&quot;
+  parameters {
+    ...
+
+    Vpc = &quot;${aws_vpc.Vpc.id}&quot;
+    VpcCidr = &quot;${aws_vpc.Vpc.cidr_block}&quot;
+    PubSubnetAz1 = &quot;${aws_subnet.PubSubnetAz1.id}&quot;
+    PubSubnetAz2 = &quot;${aws_subnet.PubSubnetAz2.id}&quot;
+    PubSubnetAz3 = &quot;${aws_subnet.PubSubnetAz3.id}&quot;
+  }
+}
+</code></pre>
+
+<h4 id="applying">Applying!</h4>
+
+<p>Now if we run <code>terraform plan</code> we should see 1 change - the <code>aws_cloudformation_stack</code>
+resource. It&rsquo;s difficult to validate this since it&rsquo;s just a blob of encoded JSON,
+but if we&rsquo;ve been diligent above, we can do a <code>terraform apply</code>!</p>
+
+<p>It&rsquo;s probably wise at this point to watch the update in the AWS Console UI, so we
+can make sure nothing unexpected is happening.</p>
+
+<p>The update shouldn&rsquo;t take too long (~1-2mins), and should contain a number of lines
+where the status is <code>DELETE_SKIPPED</code>.</p>
+
+<h3 id="clearing-the-dishes">Clearing the dishes</h3>
+
+<p>Now we can clean everything up and swap the <code>Docker.tmpl</code> for the full
+<code>Docker-no-vpc.tmpl</code> file. The only differences should be related to the Lambda
+resource that&rsquo;s no longer in use:</p>
+
+<pre><code class="language-hcl">resource &quot;aws_cloudformation_stack&quot; &quot;docker4aws&quot; {
+  template_body = &quot;${file(&quot;Docker-no-vpc.tmpl&quot;)}&quot;
+  ...
+}
+</code></pre>
+
+<p>At this point we can <code>terraform apply</code> again, and after ~30s the update should
+be complete.</p>
+
+<h2 id="dessert">Dessert</h2>
+
+<p>Migrating resources from CloudFormation&rsquo;s control to Terraform&rsquo;s control is not
+too painful. The <code>DeletionPolicy</code> attribute makes this possible. We could
+accomplish the transition by manually altering the Terraform state (either by
+hand, or with the new <code>terraform state</code> commands), but the <code>terraform import</code>
+command makes life so much easier!</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hairyhenderson";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hairyhenderson";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="https://hairyhenderson.github.io/blog/public/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
+

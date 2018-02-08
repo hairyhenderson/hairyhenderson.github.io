@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://hairyhenderson.github.io/blog/public/post/migrating-d4aws-to-novpc/</loc>
+    <lastmod>2018-02-07T20:10:02-05:00</lastmod>
+  </url>
   
   <url>
     <loc>https://hairyhenderson.github.io/blog/public/post/about_gomplate/</loc>
@@ -47,7 +53,14 @@
   </url>
   
   <url>
+    <loc>https://hairyhenderson.github.io/blog/public/categories/aws/</loc>
+    <lastmod>2018-02-07T20:10:02-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hairyhenderson.github.io/blog/public/categories/</loc>
+    <lastmod>2018-02-07T20:10:02-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -59,7 +72,7 @@
   
   <url>
     <loc>https://hairyhenderson.github.io/blog/public/categories/docker/</loc>
-    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
+    <lastmod>2018-02-07T20:10:02-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -107,7 +120,7 @@
   
   <url>
     <loc>https://hairyhenderson.github.io/blog/public/post/</loc>
-    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
+    <lastmod>2018-02-07T20:10:02-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -125,7 +138,7 @@
   
   <url>
     <loc>https://hairyhenderson.github.io/blog/public/</loc>
-    <lastmod>2017-05-18T23:14:49-04:00</lastmod>
+    <lastmod>2018-02-07T20:10:02-05:00</lastmod>
     <priority>0</priority>
   </url>
   

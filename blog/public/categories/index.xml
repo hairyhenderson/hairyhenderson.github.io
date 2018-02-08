@@ -6,9 +6,19 @@
     <description>Recent content in Categories on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 07 Feb 2018 20:10:02 -0500</lastBuildDate>
     
 	<atom:link href="https://hairyhenderson.github.io/blog/public/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Aws</title>
+      <link>https://hairyhenderson.github.io/blog/public/categories/aws/</link>
+      <pubDate>Wed, 07 Feb 2018 20:10:02 -0500</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/categories/aws/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Crypto</title>
@@ -22,7 +32,7 @@
     <item>
       <title>Docker</title>
       <link>https://hairyhenderson.github.io/blog/public/categories/docker/</link>
-      <pubDate>Thu, 18 May 2017 23:14:49 -0400</pubDate>
+      <pubDate>Wed, 07 Feb 2018 20:10:02 -0500</pubDate>
       
       <guid>https://hairyhenderson.github.io/blog/public/categories/docker/</guid>
       <description></description>
