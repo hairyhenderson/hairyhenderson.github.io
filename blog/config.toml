@@ -22,9 +22,13 @@ canonifyurls = true
     defaultDescription = "Dave's random projects, notes, musings..."
     # theme = "theme-base-0f"
     highlight = "tomorrow-night-eighties"
+    # TODO: get this working - will need to update highlight.js
+    # highlight = "atom-one-dark"
 
     github = "https://github.com/hairyhenderson"
     twitter = "https://twitter.com/hairyhenderson"
     keybase = "https://keybase.io/dhenderson"
     linkedin = "https://ca.linkedin.com/in/hairyhenderson"
     facebook = "https://www.facebook.com/dave.a.henderson"
+
+    customCSS = "/css/custom.css"

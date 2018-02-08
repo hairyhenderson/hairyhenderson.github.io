@@ -6,10 +6,20 @@
     <description>Recent content in Posts on interesting things</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 May 2017 23:14:49 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 07 Feb 2018 20:10:02 -0500</lastBuildDate>
     
 	<atom:link href="https://hairyhenderson.github.io/blog/public/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Whipping tablecloths with Docker for AWS, CloudFormation, and Terraform</title>
+      <link>https://hairyhenderson.github.io/blog/public/post/migrating-d4aws-to-novpc/</link>
+      <pubDate>Wed, 07 Feb 2018 20:10:02 -0500</pubDate>
+      
+      <guid>https://hairyhenderson.github.io/blog/public/post/migrating-d4aws-to-novpc/</guid>
+      <description>I&amp;rsquo;ve been using Docker for AWS (D4AWS) ever since I was accepted into the public beta, and have been running it in production for a while. One of the best features of D4AWS is that you can deploy it without needing any client-side tooling, due to its use of AWS CloudFormation (CFN).
+This simplicity can also be a problem, since CloudFormation can be quite inflexible. In the early days, if you wanted to add a D4AWS stack to an existing VPC, for example, you were out of luck.</description>
+    </item>
     
     <item>
       <title>About gomplate</title>
