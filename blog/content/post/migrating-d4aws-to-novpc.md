@@ -142,17 +142,17 @@ It's fairly straightforward to do this through the AWS console UI, but in my
 opinion it's faster to use the AWS CLI:
 
 ```console
-$ aws ec2 describe-vpcs --output text --filters 'Name=tag:Name,Values="metrics-dee-stack-VPC"' --query Vpcs[].VpcId
+$ aws ec2 describe-vpcs --output text --filters 'Name=tag:Name,Values="docker4aws-VPC"' --query Vpcs[].VpcId
 vpc-12348765
-$ aws ec2 describe-internet-gateways --output text --filters 'Name=tag:Name,Values="metrics-dee-stack-IGW"' --query InternetGateways[].InternetGatewayId
+$ aws ec2 describe-internet-gateways --output text --filters 'Name=tag:Name,Values="docker4aws-IGW"' --query InternetGateways[].InternetGatewayId
 igw-18273645
-$ aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values="metrics-dee-stack-Subnet1"' --query Subnets[].SubnetId
+$ aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values="docker4aws-Subnet1"' --query Subnets[].SubnetId
 subnet-87654321
-$ aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values="metrics-dee-stack-Subnet2"' --query Subnets[].SubnetId
+$ aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values="docker4aws-Subnet2"' --query Subnets[].SubnetId
 subnet-87654322
-$ aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values="metrics-dee-stack-Subnet3"' --query Subnets[].SubnetId
+$ aws ec2 describe-subnets --output text --filters 'Name=tag:Name,Values="docker4aws-Subnet3"' --query Subnets[].SubnetId
 subnet-87654323
-$ aws --profile developer --region us-east-1 ec2 describe-route-tables --output text --filters 'Name=tag:Name,Values="metrics-dee-stack-RT"' --query RouteTables[].RouteTableId
+$ aws --profile developer --region us-east-1 ec2 describe-route-tables --output text --filters 'Name=tag:Name,Values="docker4aws-RT"' --query RouteTables[].RouteTableId
 rtb-12344321
 ```
 
