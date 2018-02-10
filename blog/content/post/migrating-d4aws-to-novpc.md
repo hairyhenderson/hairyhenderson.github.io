@@ -216,7 +216,7 @@ resources are still hanging around (Lambda-related). We'll clean them up later.
 The Terraform configuration now needs to be altered to pass in the appropriate IDs
 as parameters. The `aws_cloudformation_stack` resources should look like this:
 
-```hcl
+```
 resource "aws_cloudformation_stack" "docker4aws" {
   template_body = "${file("Docker.tmpl")}"
   parameters {
@@ -249,7 +249,7 @@ Now we can clean everything up and swap the `Docker.tmpl` for the full
 `Docker-no-vpc.tmpl` file. The only differences should be related to the Lambda
 resource that's no longer in use:
 
-```hcl
+```
 resource "aws_cloudformation_stack" "docker4aws" {
   template_body = "${file("Docker-no-vpc.tmpl")}"
   ...
