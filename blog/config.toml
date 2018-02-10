@@ -16,13 +16,11 @@ canonifyurls = true
 [params]
     # {{ md5 "your@email.com" }}
     gravatarhash = "3a457dd69d8817d6a61c7dc07b348bfa"
-    # googleAnalytics = "UA-82637990-2"
+    googleAnalytics = "UA-82637990-2"
     tagline = "interesting things"
 
     defaultDescription = "Dave's random projects, notes, musings..."
     # theme = "theme-base-0f"
-    # highlight = "tomorrow-night-eighties"
-    # TODO: get this working - will need to update highlight.js
     highlight = "atom-one-dark"
 
     github = "https://github.com/hairyhenderson"
