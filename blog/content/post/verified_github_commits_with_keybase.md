@@ -249,3 +249,5 @@ a certain website, and a certain reddit account is _also_ the same person who
 owns that GitHub account.
 
 👋🔏
+
+_Just an addendum: - sometimes after reboots (and maybe especially after password changes), signing stops working, with `"error: gpg failed to sign the data"`. The usual fix is simply to kill the `gpg-agent` process. It should restart on its own and start behaving again!_
