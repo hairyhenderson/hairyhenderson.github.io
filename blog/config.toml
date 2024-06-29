@@ -1,14 +1,13 @@
 baseurl = "https://blog.hairyhenderson.ca/"
 languageCode = "en-us"
 title = "interesting things"
-theme = "hyde-x"
 builddrafts = false
-disqusShortname = "hairyhenderson"
 
 canonifyurls = true
 
-[author]
-    name = "Dave Henderson"
+[module]
+    [[module.imports]]
+        path = 'github.com/hairyhenderson/hyde-x'
 
 [taxonomies]
     category = "categories"
@@ -30,3 +29,10 @@ canonifyurls = true
     facebook = "https://www.facebook.com/dave.a.henderson"
 
     customCSS = "/css/custom.css"
+
+    [params.author]
+        name = "Dave Henderson"
+
+[services]
+    [services.disqus]
+        shortname = 'hairyhenderson'

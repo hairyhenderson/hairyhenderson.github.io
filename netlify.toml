@@ -5,6 +5,6 @@ publish = "blog/public"
 
 [build.environment]
 # keep this in sync with .github/workflows/sitecheck.yml
-HUGO_VERSION = "0.54.0"
+HUGO_VERSION = "0.128.0"
 NODE_VERSION = "20"
 GO_VERSION = "1.22.4"
