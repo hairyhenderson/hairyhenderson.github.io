@@ -11,7 +11,7 @@ jobs:
         uses: peaceiris/actions-hugo@v3.0.0
         with:
           # keep this in sync with netlify.toml
-          hugo-version: '0.54.0'
+          hugo-version: '0.128.0'
       - uses: actions/checkout@v4
       - name: Install muffet
         env:
@@ -32,8 +32,7 @@ jobs:
           muffet http://localhost:1313 \
             -r8 --max-connections-per-host=4 --buffer-size=8192 \
             --exclude="https://github\.com.*" \
-            --exclude="https://docs\.aws.*" \
-            --exclude="https://linux.die\.net.*" \
-            --exclude="https://jqplay\.org.*" \
+            --exclude="https://twitter\.com.*" \
+            --exclude="https://ca\.linkedin\.com.*"
 
           kill %1

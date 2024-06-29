@@ -107,7 +107,7 @@ argument landed in [v0.5.0][].
 In July, I decided to finally declare that `gomplate` was "complete" (ha!) and
 released version 1.0.0:
 
-{{< tweet 753434572604317696 >}}
+{{< twitter user="hairyhenderson" id="753434572604317696" >}}
 
 Obviously it _wasn't_ complete...
 
