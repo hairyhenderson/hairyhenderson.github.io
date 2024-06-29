@@ -114,7 +114,7 @@ Successfully signed "docker.io/hairyhenderson/dct-test":latest
 
 This is as far as I've gotten... Maybe more to come later!
 
-[diogo-blog-dct]: https://blog.docker.com/2015/11/docker-content-trust-yubikey/
+[diogo-blog-dct]: https://web.archive.org/web/20170206173948/https://blog.docker.com/2015/11/docker-content-trust-yubikey/
 [notary-GH-779]: https://github.com/docker/notary/issues/779
 [piv-tool-dl]: https://developers.yubico.com/yubico-piv-tool/Releases/yubico-piv-tool-1.4.3-mac.zip
 [toolbox-GH-461]: https://github.com/docker/toolbox/issues/461

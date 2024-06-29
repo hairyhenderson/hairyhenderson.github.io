@@ -33,6 +33,9 @@ jobs:
             -r8 --max-connections-per-host=4 --buffer-size=8192 \
             --exclude="https://github\.com.*" \
             --exclude="https://twitter\.com.*" \
-            --exclude="https://ca\.linkedin\.com.*"
+            --exclude="https://www\.linkedin\.com.*" \
+            --exclude="https://linux\.die\.net.*" \
+            --exclude="https://docker\.com.*" \
+            --exclude="https://docs\.aws\.amazon\.com.*"
 
           kill %1

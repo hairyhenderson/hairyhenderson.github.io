@@ -27,7 +27,7 @@ So there's a few things I'll need to figure out:
   - The example's in Python, but I'd prefer to use Go, because...
 2. How to authenticate with the Fitbit API?
   - They use OAuth2 (OAuth1 was deprecated and is no longer supported), and it
-  seems I need to use the ["Implicit Grant" flow](https://dev.fitbit.com/docs/oauth2/#implicit-grant-flow)
+  seems I need to use the ["Implicit Grant" flow](https://dev.fitbit.com/build/reference/web-api/developer-guide/authorization/#Implicit-Grant-Flow)
 3. I have zero knowledge of Bluetooth, so I'm sure there'll be some stumbling
   blocks along the way...
   - Can I keep my Raspberry Pi in the basement but have the balance board on the

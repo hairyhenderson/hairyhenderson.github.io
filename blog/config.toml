@@ -13,20 +13,15 @@ canonifyurls = true
     category = "categories"
 
 [params]
-    # {{ md5 "your@email.com" }}
     gravatarhash = "3a457dd69d8817d6a61c7dc07b348bfa"
     googleAnalytics = "UA-82637990-2"
     tagline = "interesting things"
 
     defaultDescription = "Dave's random projects, notes, musings..."
-    # theme = "theme-base-0f"
     highlight = "atom-one-dark"
 
     github = "https://github.com/hairyhenderson"
-    twitter = "https://twitter.com/hairyhenderson"
-    keybase = "https://keybase.io/dhenderson"
-    linkedin = "https://ca.linkedin.com/in/hairyhenderson"
-    facebook = "https://www.facebook.com/dave.a.henderson"
+    linkedin = "https://www.linkedin.com/in/hairyhenderson"
 
     customCSS = "/css/custom.css"
 

@@ -129,13 +129,13 @@ _[#485 (comment)](https://github.com/hairyhenderson/gomplate/issues/485#issuecom
 [gomplate]: https://github.com/hairyhenderson/gomplate/
 [gomplate v1.6.0]: https://github.com/hairyhenderson/gomplate/releases/tag/v1.6.0
 [gomplate v3.3.0]: https://github.com/hairyhenderson/gomplate/releases/tag/v3.3.0
-[`file.Write`]: https://gomplate.hairyhenderson.ca/functions/file/#file-write
-[`tmpl.Exec`]: https://gomplate.hairyhenderson.ca/functions/tmpl/#tmpl-exec
+[`file.Write`]: https://docs.gomplate.ca/functions/file/#filewrite
+[`tmpl.Exec`]: https://docs.gomplate.ca/functions/tmpl/#tmplexec
 [`range`]: https://golang.org/pkg/text/template/#hdr-Actions
-[nested template]: https://gomplate.hairyhenderson.ca/syntax/#nested-templates
-[external nested templates]: https://gomplate.hairyhenderson.ca/syntax/#external-templates
-[`slice`]: https://gomplate.hairyhenderson.ca/functions/coll/#coll-slice
-[`datasource`]: https://gomplate.hairyhenderson.ca/datasources/
-[`filepath`]: https://gomplate.hairyhenderson.ca/functions/filepath/
-[`dict`]: https://gomplate.hairyhenderson.ca/functions/coll/#coll-dict
+[nested template]: https://docs.gomplate.ca/syntax/#nested-templates
+[external nested templates]: https://docs.gomplate.ca/syntax/#external-templates
+[`slice`]: https://docs.gomplate.ca/functions/coll/#collslice-_deprecated_
+[`datasource`]: https://docs.gomplate.ca/datasources/
+[`filepath`]: https://docs.gomplate.ca/functions/filepath/
+[`dict`]: https://docs.gomplate.ca/functions/coll/#colldict
 [@rayjlinden]: https://github.com/rayjlinden

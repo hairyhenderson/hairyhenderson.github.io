@@ -187,7 +187,7 @@ my spare time.
 
 I hope the future holds _at least_ a 1.7.0 version - at the time I'm writing
 this, it's been almost 20 days since 1.6.0 and there are
-[at least 15](https://github.com/hairyhenderson/gomplate/compare/v1.6.0...master)
+[at least 15](https://github.com/hairyhenderson/gomplate/compare/v1.6.0...main)
 changes since then...
 
 Broadly, though, I'm hoping to do _more_ with `gomplate`:
