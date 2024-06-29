@@ -2,7 +2,6 @@ baseurl = "https://blog.hairyhenderson.ca/"
 languageCode = "en-us"
 title = "interesting things"
 builddrafts = false
-
 canonifyurls = true
 
 [module]
@@ -14,7 +13,6 @@ canonifyurls = true
 
 [params]
     gravatarhash = "3a457dd69d8817d6a61c7dc07b348bfa"
-    googleAnalytics = "UA-82637990-2"
     tagline = "interesting things"
 
     defaultDescription = "Dave's random projects, notes, musings..."
