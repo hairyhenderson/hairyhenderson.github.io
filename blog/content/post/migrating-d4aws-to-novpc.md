@@ -267,11 +267,11 @@ accomplish the transition by manually altering the Terraform state (either by
 hand, or with the new `terraform state` commands), but the `terraform import`
 command makes life so much easier!
 
-[Docker for AWS]: https://docker.com/docker-aws
+[Docker for AWS]: https://web.archive.org/web/20180314143906/https://docker.com/docker-aws
 [CloudFormation]: https://aws.amazon.com/cloudformation
-[novpc template]: https://docs.docker.com/docker-for-aws/#deployment-options
+[novpc template]: https://web.archive.org/web/20181116035529/https://docs.docker.com/docker-for-aws/#deployment-options
 [Terraform]: https://terraform.io
-[`aws_cloudformation_stack`]: https://terraform.io/docs/providers/aws/r/cloudformation_stack.html
+[`aws_cloudformation_stack`]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack.html
 [`DeletionPolicy`]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html
-[Terraform Import]: https://www.terraform.io/docs/import/index.html
+[Terraform Import]: https://developer.hashicorp.com/terraform/cli/import
 
